@@ -83,7 +83,10 @@ As a player, I need to experience the appropriate level of difficulty and challe
 **As a player, I want to be able to see my score on the screen and have an idea of how I’m doing in the game**
 
 *Team member: Berat* 
-- Scoreboard [must have]
+- [ ] customised score [should have] (at the moment it's kaboom.js boilerplate)
+  - [ ] HTML to add units e.g. XP?
+  - [ ] CSS to place more visibly?
+- [ ] Create an absolutely "MVP" basic JS Scoreboard with high scores to beat [should have]
 
 ***
 
