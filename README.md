@@ -20,6 +20,48 @@ In this section, we will briefly discuss how our team addressed the applicable c
 - ✨ Basic Readme.md in place
 - ✨ Use Frameworks such as *Kaboom.js, phaser.js, three.js, babylon.js, pixi.js*
 
+### User stories
+
+User Stories:
+
+**As a player, I need the design on Desktop and Mobile** -- Alena 
+Desktop first [must have]   
+CSS embedded [must have]
+Mobile version [should have]
+
+**The design needs to be consistent Retro 1980’s Olympic theme. [must have]**  --- Alena
+Pngs and backgrounds
+Audio files 
+Figma Wireframe
+Color scheme - olympic colors, CI asked for bright neon
+Check out Paris 2024
+
+**As a player, I want to be able to see my score on the screen and have an idea of how I’m doing in the game [must have]**  --- Berat
+
+As a player, I want to be able to control my character [must have]  --- Hilla
+
+As a player, I need to be able to easily start the game when I want [must have] ---  Chinonso 
+Welcome page Modal
+Start button
+Tutorial link
+Anything else?
+
+As a player, I need to be able to control the volume --- Berat
+Start with mute button [must have] 
+Specific volume controls [should have]
+
+As a player, I want to be able to view the tutorials any time that I want [must have] ---  Hilla
+
+As a player, I want to be able to see animations as my character moves in the environment [must have] --- Hilla
+2 frames to start off [must have]
+Includes any backgrounds/ obstacles (could have)
+
+As a player, I want to be able to interact with obstacles with the right level of challenge [must have]. -- Gennadiy
+… kills the character when collides
+…. Leads to game over screen
+
+As a player, I need to be able to see the Game Over page with appropriate features e.g. Restart, see score. [must have] -- Gennadiy
+
 # ABOUT SUBMISSION
 ## Intro
 One or two paragraphs providing an overview of our project
