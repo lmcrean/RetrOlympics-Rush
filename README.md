@@ -87,6 +87,9 @@ As a player, I need to experience the appropriate level of difficulty and challe
   - [ ] HTML to add units e.g. XP?
   - [ ] CSS to place more visibly?
 - [ ] Create an absolutely "MVP" basic JS Scoreboard with high scores to beat [should have]
+- [ ] 10 points per jump [should have]
+- [ ] How can you make the score system more exciting and engaging for the player? [could have]
+
 
 ***
 
