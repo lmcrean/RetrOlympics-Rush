@@ -3,12 +3,26 @@ const JUMP_FORCE = 1000;
 const SPEED = 300 ;
 
 // initialize context
-kaboom();
+kaboom({
+    width: 1500,
+    height: 800,
+});
 
 // load assets
-loadSprite("athlete", "assets/images/athlete.png");
+loadSprite("athlete", "assets/sprites/man.png");
+loadSprite("background", "assets/sprites/backgroundtwo.jpg"); 
  
 scene("game", () => {
+
+    // Draw the background image onto the canvas
+    const bgImage = add([
+        sprite("background",{
+            width: 1500,
+            height: 800,
+        }),
+        area(),
+        pos(0, 0),
+    ]);
 
     // define gravity
     setGravity(1600);
@@ -18,7 +32,6 @@ scene("game", () => {
         // list of components
         sprite("athlete"),
         pos(80, 40),
-        scale(0.2),
         area(),
         body(),
     ]);
@@ -36,7 +49,7 @@ scene("game", () => {
 
     function jump() {
         if (player.isGrounded()) {
-            player.jump(JUMP_FORCE);
+            player.jump(JUMP_FORCE); 
         }
     }
 
