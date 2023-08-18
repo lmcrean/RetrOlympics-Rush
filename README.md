@@ -4,13 +4,13 @@
 
 </h1>
 
-<img src=assets/media/placeholder.svg width =300>
+<img src="assets/screenshots/gameplay-recording-intro.gif" width =400>
 </div>
 
 # SUBMISSION
 ## Deployment
 #### _(please note, your team must also include the deployed links in the usual submission in Hackapp)_
-This project is deployed and can be accessed at [http://your-deployed-link.com](http://your-deployed-link.com).
+This project is deployed and can be accessed at [https://lmcrean.github.io/Retro-Olympic-Sidescroller/](https://lmcrean.github.io/Retro-Olympic-Sidescroller/).
 
 ## Criteria
 In this section, we will briefly discuss how our team addressed the applicable criteria:
