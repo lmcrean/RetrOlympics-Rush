@@ -21,7 +21,7 @@ scene("game", () => {
             height: 800,
         }),
         area(),
-        pos(0, 0),
+        pos(0, 0 ),
     ]);
 
     // define gravity
