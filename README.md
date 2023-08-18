@@ -1,12 +1,11 @@
+<div align=center>
 
-
-<h1 align="center"><strong>👨‍🔧👨🏻‍🔧👸🏼🍄🐲 Retro Quest 🐲🍄👸🏼👨🏻‍🔧👨‍🔧</strong>
+<h1><strong>Untitled Retro Olympic Sidescroller Project</strong>
 
 </h1>
 
-
-![Summer of Code Banner](https://res.cloudinary.com/djdefbnij/image/upload/v1690795830/FB9845D5-2359-4863-B550-E76853BCFEC7-1_cmkyvh.jpg)
-
+<img src=assets/media/placeholder.svg width =300>
+</div>
 # SUBMISSION
 ## Deployment
 #### _(please note, your team must also include the deployed links in the usual submission in Hackapp)_
