@@ -3,10 +3,11 @@ const JUMP_FORCE = 1000;
 const SPEED = 300;
 
 // initialize context
-kaboom({
-  width: 1500,
-  height: 800,
-});
+// kaboom({
+//   width: 1500,
+//   height: 800,
+// });
+kaboom({ width: window.innerWidth, height: window.innerHeight });
 
 // load assets
 // loadSprite("athlete", "assets/sprites/man.png");
@@ -59,8 +60,8 @@ scene("game", () => {
   // Draw the background image onto the canvas
   const bgImage = add([
     sprite("background", {
-      width: 1500,
-      height: 800,
+      width: width(),
+      height: height(),
     }),
     area(),
     pos(0, 0),
