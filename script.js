@@ -1,13 +1,13 @@
 const FLOOR_HEIGHT = 48;
-const JUMP_FORCE = 800;
+const JUMP_FORCE = 1000;
 const SPEED = 300 ;
 
 // initialize context
 kaboom();
 
 // load assets
-loadSprite("athlete", "sprites/athlete.png");
-
+loadSprite("athlete", "assets/images/athlete.png");
+ 
 scene("game", () => {
 
     // define gravity
@@ -48,7 +48,7 @@ scene("game", () => {
 
         // add tree obj
         add([
-            rect(20, rand(32, 96)),
+            rect(48, rand(32, 96)),
             area(),
             outline(4),
             pos(width(), height() - FLOOR_HEIGHT),
@@ -59,7 +59,7 @@ scene("game", () => {
         ]);
 
         // wait a random amount of time to spawn next tree
-        wait(rand(0.5, 1.5), spawnTree);
+        wait(rand(1 , 2 ), spawnTree);
 
     }
 
