@@ -1,16 +1,16 @@
 <div align=center>
 
-<h1><strong>Retro Olympic Sidescroller Project</strong>
+<h1><strong>Retro Olympic Sidescroller Project</strong></h1>
 
-</h1>
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![Kaboom.js](https://img.shields.io/badge/Kaboom.js-%23E34F26.svg?style=for-the-badge&logo=kaboom.js&color=%3343330)
 
-<img src=assets/media/placeholder.svg width =300>
+<img src="assets/screenshots/gameplay-recording-intro.gif" width =400>
 </div>
 
 # SUBMISSION
 ## Deployment
 #### _(please note, your team must also include the deployed links in the usual submission in Hackapp)_
-This project is deployed and can be accessed at [http://your-deployed-link.com](http://your-deployed-link.com).
+This project is deployed and can be accessed at [https://lmcrean.github.io/Retro-Olympic-Sidescroller/](https://lmcrean.github.io/Retro-Olympic-Sidescroller/).
 
 ## Criteria
 In this section, we will briefly discuss how our team addressed the applicable criteria:
@@ -21,48 +21,136 @@ In this section, we will briefly discuss how our team addressed the applicable c
 - ✨ Basic Readme.md in place
 - ✨ Use Frameworks such as *Kaboom.js, phaser.js, three.js, babylon.js, pixi.js*
 
-### User Stories/ MoSCoW method
+Our team addressed the criteria by organising our project into User Stories, then further breaking down with the MoSCoW Prioritisation method.
+
+### User Stories
+
+As a player, I need the design on Desktop and Mobile.
+
+As a player, I need the design to be consistent, with a Retro 1980’s Olympic theme.
+
+As a player, I want to be able to see my score on the screen and have an idea of how I’m doing in the game.
+
+As a player, I want to be able to control my character.
+
+As a player, I need to be able to easily start the game when I want.
+
+As a player, I need to be able to control the volume.
+
+As a player, I want to be able to view the tutorials any time that I want.
+
+As a player, I want to be able to see animations as my character moves in the environment.
+
+As a player, I want to be able to interact with obstacles with the right level of challenge.
+
+As a player, I need to be able to see the Game Over page with appropriate features e.g. Restart, see score.
+
+As a player, I need to experience the appropriate level of difficulty and challenge.
+
+
+### User Stories with MoSCoW method
 
 **As a player, I need the design on Desktop and Mobile** 
+
+*Team member: Alena*
 - Desktop first [must have]   
 - CSS embedded [must have]
 - Mobile version [should have]
 
-**The design needs to be consistent Retro 1980’s Olympic theme. [must have]** 
-- Pngs and backgrounds [Must have]
+***
+
+**As a player, I need the design to be consistent, with a Retro 1980’s Olympic theme.**
+
+*Team member: Alena* 
+- [x] Pngs and backgrounds [Must have]
 - Audio files [must have]
 - Figma Wireframe
-- Color scheme - olympic colors, CI asked for bright neon
-- Check out Paris 2024
+- [x] Color scheme - olympic colors, CI requires bright neon
+- [x] Nods to Paris 2024
 
-**As a player, I want to be able to see my score on the screen and have an idea of how I’m doing in the game** 
+***
+
+
+**As a player, I want to be able to see my score on the screen and have an idea of how I’m doing in the game**
+
+*Team member: Berat* 
 - Scoreboard [must have]
 
-**As a player, I want to be able to control my character**
-- establish controls for player [must have]
+***
 
-**As a player, I need to be able to easily start the game when I want** 
+**As a player, I want to be able to control my character**
+
+*Team member: HMuraja*
+- [ ] establish controls for player [must have]
+- [x] player can jump [must have]
+- establish special moves for player [could have]
+
+***
+
+**As a player, I need to be able to easily start the game when I want**
+
+*Team member: dcsndevs* 
 - Welcome page Modal [must have]
-- Start button [must have]
+- [x] Start button [must have]
 - Tutorial link [should have]
 
-**As a player, I need to be able to control the volume** 
-- Start with mute button [must have] 
+***
+
+**As a player, I need to be able to control the volume**
+
+*Team member: Inser* 
+- [ ] Start with mute button [must have] 
 - Specific volume controls [should have]
+
+***
 
 **As a player, I want to be able to view the tutorials any time that I want**
 
-**As a player, I want to be able to see animations as my character moves in the environment** 
+*Team member: HMuraja*
+
+- [ ] tutorial modal popup [must have]
+- [ ] helpful and accessible visuals [must have]
+
+***
+
+**As a player, I want to be able to see animations as my character moves in the environment**
+*Team member: HMuraja* 
+
 - 2 frames to start off [must have]
 - Includes any backgrounds/ obstacles (could have)
 
-**As a player, I want to be able to interact with obstacles with the right level of challenge**.
-- … kills the character when collides [must have]
-- …. Leads to game over screen [must have]
+***
+
+
+**As a player, I want to be able to interact with obstacles with the right level of challenge**
+
+*Team member: Gennadiy*.
+- [x] … kills the character when collides [must have]
+- [x] …. Leads to standard game over screen [must have]
+- [ ] Leads to custom game over screen [must have]
+
+***
+
 
 **As a player, I need to be able to see the Game Over page with appropriate features e.g. Restart, see score.**
-- Game over screen [must have]
+
+*Team member: Gennadiy*
+- [ ] customized Game over screen [must have]
 - Restart button [must have]
+
+***
+
+**As a player, I need to experience the appropriate level of difficulty and challenge**
+
+- [ ] Points System - 10 points per jump [must have] <i>-- Berat </i>
+- Speed of environment 
+- Frequency of obstacles  
+- Time Allowance e.g. in 10 seconds without bumping 
+- Type of obstacles e.g. high blocks, low blocks
+- Life System (immediate death? (start here) 3 lives -1 life? [Could have]) 
+- Max Score (could have).
+
+***
 
 # ABOUT SUBMISSION
 ## Intro
@@ -76,8 +164,25 @@ The goal section provides a concise summary of the main objective or purpose of 
 - ➡️ Target Audience
 - ➡️ Benefits
 
-## Controls
-Describe briefly how the player controls the game.
+## Controls and Features
+The player controls the game with a start button, jump feature.
+
+Features include a scoreboard and game over screen.
+
+### Start Button
+<img src="assets/screenshots/start-feature.gif" width =400>
+
+### Jump Feature
+<img src="assets/screenshots/gameplay-recording-intro.gif" width=400>
+
+The player can use the spacebar to jump. The player can use the mouse to click on the screen to jump.
+
+### Score
+The scoreboard is tracked in the top-left corner, it updates as the player advances through the assault course and is displayed as a final score in the "game over screen".
+
+### Game Over
+<img src="assets/screenshots/gameover.png" width=400>
+
 
 ## Tech
 In the tech section, we provide information about the technology stack, dependencies, and any technical details related to the project.
@@ -89,7 +194,7 @@ We would like to give credit to the following individuals, organizations, and re
 
 ### Resources consulted
 
-- Flappy Bird was researched as it had well resourced tutorials and easy to implement
+- Simple sidescroller games were researched as they had well resourced tutorials and were easy to implement
 
 #### KaBoom.js Resources
 
