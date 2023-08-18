@@ -1,11 +1,12 @@
 <div align=center>
 
-<h1><strong>Untitled Retro Olympic Sidescroller Project</strong>
+<h1><strong>Retro Olympic Sidescroller Project</strong>
 
 </h1>
 
 <img src=assets/media/placeholder.svg width =300>
 </div>
+
 # SUBMISSION
 ## Deployment
 #### _(please note, your team must also include the deployed links in the usual submission in Hackapp)_
@@ -38,15 +39,14 @@ Describe briefly how the player controls the game.
 ## Tech
 In the tech section, we provide information about the technology stack, dependencies, and any technical details related to the project.
 
+Kaboom.js
+
 ## Credits
 We would like to give credit to the following individuals, organizations, and resources that have contributed to the project or provided inspiration:
 
 ### Resources consulted
 
-When coming up with ideas for the game, it was important to select a popular concept. Most popular concepts included.
-
 - Flappy Bird was researched as it had well resourced tutorials and easy to implement
-
 
 #### KaBoom.js Resources
 
