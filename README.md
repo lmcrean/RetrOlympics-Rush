@@ -164,8 +164,10 @@ The goal section provides a concise summary of the main objective or purpose of 
 - ➡️ Target Audience
 - ➡️ Benefits
 
-## Controls
-The player controls the game with a start button, jump feature and a game over screen.
+## Controls and Features
+The player controls the game with a start button, jump feature.
+
+Features include a scoreboard and game over screen.
 
 ### Start Button
 <img src="assets/screenshots/start-feature.gif" width =400>
@@ -174,6 +176,9 @@ The player controls the game with a start button, jump feature and a game over s
 <img src="assets/screenshots/gameplay-recording-intro.gif" width=400>
 
 The player can use the spacebar to jump. The player can use the mouse to click on the screen to jump.
+
+### Score
+The scoreboard is tracked in the top-left corner, it updates as the player advances through the assault course and is displayed as a final score in the "game over screen".
 
 ### Game Over
 <img src="assets/screenshots/gameover.png" width=400>
