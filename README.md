@@ -21,19 +21,21 @@ In this section, we will briefly discuss how our team addressed the applicable c
 - ✨ Basic Readme.md in place
 - ✨ Use Frameworks such as *Kaboom.js, phaser.js, three.js, babylon.js, pixi.js*
 
-### User Stories/ MoSCoW method
+Our team addressed the criteria by organising our project into User Stories, then further breaking down with the MoSCoW Prioritisation method.
+
+### User Stories with MoSCoW method
 
 **As a player, I need the design on Desktop and Mobile** 
 - Desktop first [must have]   
 - CSS embedded [must have]
 - Mobile version [should have]
 
-**The design needs to be consistent Retro 1980’s Olympic theme. [must have]** 
+**The design needs to be consistent Retro 1980’s Olympic theme.** 
 - Pngs and backgrounds [Must have]
 - Audio files [must have]
 - Figma Wireframe
-- Color scheme - olympic colors, CI asked for bright neon
-- Check out Paris 2024
+- Color scheme - olympic colors, CI requires bright neon
+- Nods to Paris 2024
 
 **As a player, I want to be able to see my score on the screen and have an idea of how I’m doing in the game** 
 - Scoreboard [must have]
@@ -89,7 +91,7 @@ We would like to give credit to the following individuals, organizations, and re
 
 ### Resources consulted
 
-- Flappy Bird was researched as it had well resourced tutorials and easy to implement
+- Simple sidescroller games were researched as they had well resourced tutorials and were easy to implement
 
 #### KaBoom.js Resources
 
