@@ -44,27 +44,20 @@ We would like to give credit to the following individuals, organizations, and re
 
 ### Resources consulted
 
-
 When coming up with ideas for the game, it was important to select a popular concept. Most popular concepts included.
 
-- Chrome Dino
-- Flappy Bird
+- Flappy Bird was researched as it had well resourced tutorials and easy to implement
 
 
-Other more ambitious concepts included
-- Mario
-- Zelda
-- Pokemon
-- Space Invaders
-- Tetris
-- Pacman
-- 
-#### KaBoom.js
+#### KaBoom.js Resources
 
 - https://kaboomjs.com/
 - https://kaboomjs.com/doc/intro 
 
-#### Reverse Flappy Game, "Learn to Make a Game with Kaboom.js in 39 Minutes - Step-by-Step Tutorial", 
+  ***
+#### Flappy Bird Resources
+
+##### Reverse Flappy Game, "Learn to Make a Game with Kaboom.js in 39 Minutes - Step-by-Step Tutorial", 
 
 - Youtube Tutorial https://youtu.be/hgReGsh5xVU
 - Repo for code https://replit.com/@ykdojo/flappy-2#code/main.js
@@ -216,25 +209,7 @@ scene("game", () => {
 go("game");
 ```
 
-#### Chrome Dino game
-https://youtu.be/w4TFHO3fioE
+#### The Easiest Flappy Bird Tutorial Ever? - Beginner Javascript Game - Vanilla JS
+https://youtu.be/3SsYZDJdeXk
 
-#### Space invaders, Mario and Zelda tutorial with Kaboom.js
-
-https://youtu.be/4OaHB0JbJDI
-
-Supplies code in the links below the video
-
-there's another video here by the same person that shows how to make Mario https://youtu.be/2nucjefSr6I
-
-The only reservation is that it appears more complex than the other tutorials. It's not clear if it's a good idea to use this tutorial as a starting point.
-
-
-
-
-#### Mark's Food Place 
-https://erikgxdev.itch.io/marks-food-place
-
-the player drags the items on to the plate to make a meal. The game is a good example of how to use the drag and drop feature in Kaboom.js
-
-no code documentation
+***
