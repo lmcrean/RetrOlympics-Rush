@@ -55,6 +55,7 @@ As a player, I need to experience the appropriate level of difficulty and challe
 *Team member: Alena*
 - Desktop first [must have]   
 - CSS embedded [must have]
+- review CSS issues with viewport, share with Geddaniy [must have]
 - Mobile version [should have]
 
 ***
@@ -63,10 +64,18 @@ As a player, I need to experience the appropriate level of difficulty and challe
 
 *Team member: Alena* 
 - [x] Pngs and backgrounds [Must have]
-- Audio files [must have]
-- Figma Wireframe
+- [ ] Audio files [must have]
+  - [ ] colliding with obstacles [should have]
+  - [ ] clicking/pressing buttons [should have]
+  - [ ] background music [must have]
+  - [ ] check out replit for audio files?
+- [ ] applause [could have]
+- [ ] start audio [could have]
 - [x] Color scheme - olympic colors, CI requires bright neon
 - [x] Nods to Paris 2024
+- [ ] try using different heights for obstacles [should have]
+- [ ] Figma Wireframe [could have]
+- [ ] tunnel obstacles - jump through the middle [should have]
 
 ***
 
@@ -80,19 +89,25 @@ As a player, I need to experience the appropriate level of difficulty and challe
 
 **As a player, I want to be able to control my character**
 
-*Team member: HMuraja*
+*Team member: HMuraja & Gennadiy*
 - [ ] establish controls for player [must have]
 - [x] player can jump [must have]
+- [ ] **player can double jump over an extra high obstacle [should have] -- Gennadiy**
+  - [ ] document any bugs with screenshots/ highlighted code on github issues and let Laurie know
 - establish special moves for player [could have]
+  - throw something? [could have]
+  - duck under a flying obstacle? [could have]
 
 ***
 
 **As a player, I need to be able to easily start the game when I want**
 
 *Team member: dcsndevs* 
-- Welcome page Modal [must have]
+- [ ] Welcome page Modal [must have]
+  - [ ] liase with Alina for any visuals?
+  - [ ] basic CSS background color in the meantime
 - [x] Start button [must have]
-- Tutorial link [should have]
+- [ ] Tutorial link [must have] - see user story about tutorials
 
 ***
 
@@ -104,19 +119,26 @@ As a player, I need to experience the appropriate level of difficulty and challe
 
 ***
 
-**As a player, I want to be able to view the tutorials any time that I want**
+**As a player, I want to be able to view the tutorials at the beginning of the game**
 
-*Team member: HMuraja*
+*Team member: Chinonso*
 
 - [ ] tutorial modal popup [must have]
 - [ ] helpful and accessible visuals [must have]
+  - [ ] display the controls with keyboard icons, [must have] (use standard placeholder icons) 
+    - [ ] How can you make it as accessible and visual as possible? e.g. display space bar next to jumping man
+  - [ ] work out what technologies will be needed to display the modal popup [must have]
+  - [ ] screenshots [should have]
+  - GIFS of gameplay? [should/could have]
+- [ ] sprites.backgroundtwo.png displays in faded view [must have]
 
 ***
 
 **As a player, I want to be able to see animations as my character moves in the environment**
 *Team member: HMuraja* 
 
-- 2 frames to start off [must have]
+- [x] 2 frames to start off [must have]
+- animation frames, duck pose before jump, jump pose [could have]
 - Includes any backgrounds/ obstacles (could have)
 
 ***
@@ -134,8 +156,12 @@ As a player, I need to experience the appropriate level of difficulty and challe
 
 **As a player, I need to be able to see the Game Over page with appropriate features e.g. Restart, see score.**
 
-*Team member: Gennadiy*
-- [ ] customized Game over screen [must have]
+*Team member: HMuraja*
+- [ ] customized Game over screen [must have] - 
+  - [ ] score [must have]
+  - [ ] restart button [must have]
+  - [ ] plug in the sounds with HTML [must have]
+  - [ ] plug in the background with HTML & CSS [must have]
 - Restart button [must have]
 
 ***
