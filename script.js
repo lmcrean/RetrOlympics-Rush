@@ -2,16 +2,14 @@ const FLOOR_HEIGHT = 48;
 const JUMP_FORCE = 1000;
 const SPEED = 300 ;
 
-// initialize context
-kaboom({
-    width: 1500,
-    height: 800,
-});
+// KBOOM INISIALISATION
+kaboom();
 
-// load assets
+// LOAD ASSETS
 loadSprite("athlete", "assets/sprites/man.png");
 loadSprite("background", "assets/sprites/backgroundtwo.jpg"); 
- 
+
+//START MENU
 function addButton(txt, p, f) {
 
 	// add a parent background object
@@ -59,16 +57,16 @@ addButton("Start", vec2(700, 600), () => {
     go("game");
 });
 
+//GAMEPLAY//
 scene("game", () => {
 
     // Draw the background image onto the canvas
     const bgImage = add([
         sprite("background",{
-            width: 1500,
-            height: 800,
+            width: width(),
+            height: height(),
         }),
-        area(),
-        pos(0, 0 ),
+        fixed()
     ]);
 
     // define gravity
@@ -118,6 +116,27 @@ scene("game", () => {
             "fence",
         ]);
 
+        // const FENCES = {
+        //     1 : rect(48, 32),
+        //     2 : rect(48, 42),
+        //     3 : rect(48, 52),
+        //     4 : rect(48, 62),
+        //     5 : rect(48, 72)
+        // }
+
+        // randomNum= rand(1, 5)
+
+        // add([
+        //     FENCES.randomNum,
+        //     area(),
+        //     outline(4),
+        //     pos(width(), height() - FLOOR_HEIGHT),
+        //     anchor("botleft"),
+        //     color(255, 180, 255), 
+        //     move(LEFT, SPEED),
+        //     "fence",
+        // ]);
+
         // wait a random amount of time to spawn next tree
         wait(rand(1 , 2 ), spawnTree);
 
@@ -150,6 +169,7 @@ scene("game", () => {
 
 });
 
+//GAME OVER SCREEN
 scene("lose", (score) => {
 
     add([
