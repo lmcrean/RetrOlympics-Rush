@@ -1,13 +1,6 @@
 //INITIATE KABOOM
 kaboom({ width: window.innerWidth, height: window.innerHeight });
 
-const FLOOR_HEIGHT = 48;
-const JUMP_FORCE = 1000;
-const SPEED = 300;
-//Centerwidth cw and centerheight of the current screen
-const CW = width() / 2;
-const CH = height() / 2;
-
 // LOAD ASSETS
 // loadSprite("athlete", "assets/sprites/man.png");
 loadSprite("athlete-1", "assets/images/athlete-1.png");
@@ -19,6 +12,18 @@ loadSprite("background", "assets/sprites/backgroundtwo.jpg");
 loadSprite("olympicicon", "assets/sprites/parisolympics.png");
 loadSound("gamemusic", "assets/sounds/walking.mp3");
 loadSprite("mainScreenBackground", "assets/images/gamestart3.jpg");
+
+//CONSTATNTS
+const FLOOR_HEIGHT = 48;
+const JUMP_FORCE = 1000;
+const SPEED = 300;
+//Centerwidth cw and centerheight of the current screen
+const CW = width() / 2;
+const CH = height() / 2;
+//Play GamePlay Music
+const gamemusic = play("gamemusic", {loop:true, volume:0.5})
+gamemusic.paused = true
+
 
 function addButton(txt, p, f) {
   // add a parent background object
@@ -89,9 +94,6 @@ scene("startmenu", () => {
 
 // INITIATE GAME
 go("startmenu");
-
-//Play GamePlay Music
-const gamemusic = play("gamemusic", {loop:true, volume:0.5})
 
 scene("rules", () => {
   add([
