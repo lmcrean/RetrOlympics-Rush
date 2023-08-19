@@ -18,6 +18,7 @@ loadSprite("athlete", "assets/sprites/man.png");
 loadSprite("background", "assets/sprites/backgroundtwo.jpg");
 loadSprite("olympicicon", "assets/sprites/parisolympics.png");
 loadSound("gamemusic", "assets/sounds/walking.mp3");
+loadSprite("mainScreenBackground", "assets/images/gamestart3.jpg");
 
 function addButton(txt, p, f) {
   // add a parent background object
@@ -58,7 +59,20 @@ function addButton(txt, p, f) {
 
 //START MENU
 scene("startmenu", () => {
-    addButton("Start", vec2(700, 600), () => {
+    add([
+    sprite("mainScreenBackground", {
+      width: width(),
+      height: height(),
+    }),
+    area(),
+    pos(0, 0),
+  ]);
+
+  addButton("Rules ←", vec2(400, 600), () => {
+    go("rules");
+  });
+
+  addButton("Start ⏎", vec2(700, 600), () => {
         go("game");
     });
     // Mute Button
@@ -67,6 +81,10 @@ scene("startmenu", () => {
         gamemusic.paused = true
     }else{gamemusic.paused = false}
     });
+  
+  addButton("Credits →", vec2(1000, 600), () => {
+    go("credits");
+  });
 });
 
 // INITIATE GAME
@@ -74,6 +92,44 @@ go("startmenu");
 
 //Play GamePlay Music
 const gamemusic = play("gamemusic", {loop:true, volume:0.5})
+
+scene("rules", () => {
+  add([
+    color(60, 50, 168),
+    rect(width(), height()),
+    pos(0, 0),
+  ]);
+
+  add([
+    text("Rules:"), 
+    pos(width() / 2, height() / 2), 
+    scale(2), 
+    anchor("center")
+  ]);
+
+  addButton("Go back ←", vec2(400, 600), () => {
+    go("startmenu");
+  });
+})
+
+scene("credits", () => {
+  add([
+    color(60, 50, 168),
+    rect(width(), height()),
+    pos(0, 0),
+  ]);
+
+  add([
+    text("Credits:"), 
+    pos(width() / 2, height() / 2), 
+    scale(2), 
+    anchor("center")
+  ]);
+
+  addButton("Go back ←", vec2(400, 600), () => {
+    go("startmenu");
+  });
+})
 
 //GAMEPLAY//
 scene("game", () => {
