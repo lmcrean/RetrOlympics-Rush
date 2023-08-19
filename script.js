@@ -1,13 +1,12 @@
+//INITIATE KABOOM
+kaboom({ width: window.innerWidth, height: window.innerHeight });
+
 const FLOOR_HEIGHT = 48;
 const JUMP_FORCE = 1000;
 const SPEED = 300;
-
-// initialize context
-// kaboom({
-//   width: 1500,
-//   height: 800,
-// });
-kaboom({ width: window.innerWidth, height: window.innerHeight });
+//Centerwidth cw and centerheight of the current screen
+const CW = width() / 2;
+const CH = height() / 2;
 
 // LOAD ASSETS
 // loadSprite("athlete", "assets/sprites/man.png");
@@ -18,6 +17,7 @@ loadSprite("background", "assets/sprites/backgroundtwo.jpg");
 loadSprite("athlete", "assets/sprites/man.png");
 loadSprite("background", "assets/sprites/backgroundtwo.jpg");
 loadSprite("olympicicon", "assets/sprites/parisolympics.png");
+loadSound("gamemusic", "assets/sounds/walking.mp3");
 
 function addButton(txt, p, f) {
   // add a parent background object
@@ -58,12 +58,22 @@ function addButton(txt, p, f) {
 
 //START MENU
 scene("startmenu", () => {
-  addButton("Start", vec2(700, 600), () => {
-    go("game");
-  });
+    addButton("Start", vec2(700, 600), () => {
+        go("game");
+    });
+    // Mute Button
+    addButton("Music", vec2(width() - 200, 90), () => {
+    if(gamemusic.paused == false){
+        gamemusic.paused = true
+    }else{gamemusic.paused = false}
+    });
 });
 
+// INITIATE GAME
 go("startmenu");
+
+//Play GamePlay Music
+const gamemusic = play("gamemusic", {loop:true, volume:0.5})
 
 //GAMEPLAY//
 scene("game", () => {
@@ -76,6 +86,13 @@ scene("game", () => {
     area(),
     pos(0, 0),
   ]);
+
+    // Mute Button
+    addButton("Music", vec2(width() - 200, 90), () => {
+    if(gamemusic.paused == false){
+        gamemusic.paused = true
+    }else{gamemusic.paused = false}
+    });
 
   // define gravity
   setGravity(1600);
@@ -196,12 +213,16 @@ scene("game", () => {
 
 //GAME OVER SCREEN
 scene("lose", (score) => {
-  //Centerwidth cw and centerheight of the current screen
-  const CW = width() / 2;
-  const CH = height() / 2;
 
   // Background Color
   add([rect(width(), height()), pos(0, 0), color(60, 50, 168)]);
+
+    // Mute Button
+    addButton("Music", vec2(width() - 200, 90), () => {
+    if(gamemusic.paused == false){
+        gamemusic.paused = true
+    }else{gamemusic.paused = false}
+    });
 
   // Add Olympic Icon
   add([sprite("olympicicon"), pos(CW, CH - 250), scale(2), anchor("center")]);
