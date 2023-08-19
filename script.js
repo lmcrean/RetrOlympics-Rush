@@ -6,12 +6,28 @@ kaboom({ width: window.innerWidth, height: window.innerHeight });
 loadSprite("athlete-1", "assets/images/athlete-1.png");
 loadSprite("athlete-2", "assets/images/athlete-2.png");
 loadSprite("athlete-3", "assets/images/athlete-3.png");
-loadSprite("background", "assets/sprites/backgroundtwo.jpg");
+loadSprite("background", "assets/images/backgroundtwo.jpg");
 loadSprite("athlete", "assets/sprites/man.png");
-loadSprite("background", "assets/sprites/backgroundtwo.jpg");
+loadSprite("background", "assets/images/backgroundtwo.jpg");
 loadSprite("olympicicon", "assets/sprites/parisolympics.png");
 loadSound("gamemusic", "assets/sounds/walking.mp3");
 loadSprite("mainScreenBackground", "assets/images/gamestart3.jpg");
+loadSprite("barrier", "assets/images/obstacle/barrier.png");
+loadSprite("cactus", "assets/images/obstacle/cactus.png");
+loadSprite("cactusone", "assets/images/obstacle/cactusone.png");
+loadSprite("coin", "assets/images/obstacle/coin.png");
+loadSprite("crab", "assets/images/obstacle/crab.png");
+loadSprite("dinosaur", "assets/images/obstacle/dinosaur.png");
+loadSprite("flower", "assets/images/obstacle/flower.png");
+loadSprite("heart", "assets/images/obstacle/heart.png");
+loadSprite("hedge", "assets/images/obstacle/hedge.png");
+loadSprite("hedgepix", "assets/images/obstacle/hedgepix.png");
+loadSprite("horse", "assets/images/obstacle/horse.png");
+loadSprite("mushroom", "assets/images/obstacle/mushroom.png");
+loadSprite("torch", "assets/images/obstacle/torch.png");
+loadSprite("tree", "assets/images/obstacle/tree.png");
+loadSprite("tube", "assets/images/obstacle/tube.png");
+loadSprite("venus", "assets/images/obstacle/venus.png");
 
 //CONSTATNTS
 const FLOOR_HEIGHT = 48;
@@ -230,9 +246,13 @@ scene("game", () => {
   onKeyPress("down", sit_jump);
 
   function spawnTree() {
+
+    const obstacle = choose(["barrier", "cactus", "cactusone", "coin", "crab", "dinosaur", "venus", "flower", "heart", "hedge", "hedgepix", "horse", "mushroom", "torch", "tree", "tube"]);
+    
     // add tree obj
     add([
-      rect(48, rand(32, 96)),
+      sprite(obstacle),
+      scale(0.25),      
       area(),
       outline(4),
       pos(width(), height() - FLOOR_HEIGHT),
@@ -240,6 +260,7 @@ scene("game", () => {
       color(255, 180, 255),
       move(LEFT, SPEED),
       "fence",
+      
     ]);
 
     // wait a random amount of time to spawn next tree
