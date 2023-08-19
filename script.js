@@ -9,17 +9,15 @@ const SPEED = 300;
 // });
 kaboom({ width: window.innerWidth, height: window.innerHeight });
 
-// load assets
+// LOAD ASSETS
 // loadSprite("athlete", "assets/sprites/man.png");
 loadSprite("athlete-1", "assets/images/athlete-1.png");
 loadSprite("athlete-2", "assets/images/athlete-2.png");
-loadSprite("background", "assets/images/backgroundtwo.jpg");
-
-// LOAD ASSETS
+loadSprite("background", "assets/sprites/backgroundtwo.jpg");
 loadSprite("athlete", "assets/sprites/man.png");
-loadSprite("background", "assets/images/backgroundtwo.jpg"); 
+loadSprite("background", "assets/sprites/backgroundtwo.jpg");
+loadSprite("olympicicon", "assets/sprites/parisolympics.png");
 
-//START MENU
 function addButton(txt, p, f) {
   // add a parent background object
   const btn = add([
@@ -57,9 +55,14 @@ function addButton(txt, p, f) {
   return btn;
 }
 
-addButton("Start", vec2(700, 600), () => {
-  go("game");
+//START MENU
+scene ("startmenu", () =>{
+    addButton("Start", vec2(700, 600), () => {
+    go("game");
+    });
 });
+
+go("startmenu");
 
 //GAMEPLAY//
 scene("game", () => {
@@ -169,12 +172,32 @@ scene("game", () => {
 
 //GAME OVER SCREEN
 scene("lose", (score) => {
-  add([sprite("athlete-1"), pos(width() / 2, height() / 2 - 80), scale(1), anchor("center")]);
 
-  // display score
-  add([text(score), pos(width() / 2, height() / 2 + 80), scale(2), anchor("center")]);
+    //Centerwidth cw and centerheight of the current screen
+    const CW = width()/2
+    const CH = height()/2
 
-  // go back to game with space is pressed
-  onKeyPress("space", () => go("game"));
-  onClick(() => go("game"));
+    // Background Color
+    add([rect(width(), height()), pos(0, 0), color(60, 50, 168),])
+
+    // Add Olympic Icon
+    add([sprite("olympicicon"), pos(CW, CH - 250), scale(2), anchor("center"),]);
+
+    //Add Game Over Text
+    add([text("Game Over"), pos(CW, CH - 150), scale(2), anchor("center")]);
+
+    //Add Athelete img
+    add([sprite("athlete-1"), pos(CW, CH), scale(1), anchor("center")]);
+    
+    //Display score
+    add([text(score), pos(CW, CH + 150), scale(2), anchor("center")]);
+
+    //Add Retry and Menu buttons for player to navigate
+    addButton("Retry", vec2(CW - 150, CH + 250), () => {
+        go("game");
+      });
+    
+    addButton("Menu", vec2(CW + 150, CH + 250), () => {
+    go("startmenu");
+    });
 });
