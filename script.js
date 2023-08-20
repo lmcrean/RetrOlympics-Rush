@@ -6,13 +6,44 @@ kaboom({ width: window.innerWidth, height: window.innerHeight });
 loadSprite("athlete-1", "assets/images/athlete-1.png");
 loadSprite("athlete-2", "assets/images/athlete-2.png");
 loadSprite("athlete-3", "assets/images/athlete-3.png");
-loadSprite("background", "assets/sprites/backgroundtwo.jpg");
+loadSprite("background", "assets/images/backgroundtwo.jpg");
 loadSprite("athlete", "assets/sprites/man.png");
-loadSprite("background", "assets/sprites/backgroundtwo.jpg");
+loadSprite("background", "assets/images/backgroundtwo.jpg");
 loadSprite("olympicicon", "assets/sprites/parisolympics.png");
 loadSound("gamemusic", "assets/sounds/walking.mp3");
 loadSprite("mainScreenBackground", "assets/images/gamestart3.jpg");
 loadSprite("heart-icon", "assets/sprites/heart.png");
+
+//Obstacles
+loadSprite("barrier", "assets/images/obstacle/barrier.png");
+loadSprite("cactus", "assets/images/obstacle/cactus.png");
+loadSprite("cactusone", "assets/images/obstacle/cactusone.png");
+loadSprite("circle", "assets/images/obstacle/circle.png");
+loadSprite("coin", "assets/images/obstacle/coin.png");
+loadSprite("col", "assets/images/obstacle/col.png");
+loadSprite("crab", "assets/images/obstacle/crab.png");
+loadSprite("dinosaur", "assets/images/obstacle/dinosaur.png");
+loadSprite("flower", "assets/images/obstacle/flower.png");
+loadSprite("flowera", "assets/images/obstacle/flower.png");
+loadSprite("heart", "assets/images/obstacle/heart.png");
+loadSprite("hedge", "assets/images/obstacle/hedge.png");
+loadSprite("hedgepix", "assets/images/obstacle/hedgepix.png");
+loadSprite("horsea", "assets/images/obstacle/horsea.png");
+loadSprite("olive", "assets/images/obstacle/olive.png");
+loadSprite("plate", "assets/images/obstacle/plate.png");
+loadSprite("scale", "assets/images/obstacle/scale.png");
+loadSprite("statue", "assets/images/obstacle/statue.png");
+loadSprite("torch", "assets/images/obstacle/torch.png");
+loadSprite("tree", "assets/images/obstacle/tree.png");
+loadSprite("treea", "assets/images/obstacle/treea.png");
+loadSprite("vase", "assets/images/obstacle/vase.png");
+loadSprite("vasea", "assets/images/obstacle/vasea.png");
+loadSprite("vaseb", "assets/images/obstacle/vaseb.png");
+loadSprite("vasec", "assets/images/obstacle/vasec.png");
+loadSprite("vased", "assets/images/obstacle/vased.png");
+loadSprite("vasee", "assets/images/obstacle/vasee.png");
+loadSprite("venus", "assets/images/obstacle/venus.png");
+loadSprite("wave", "assets/images/obstacle/wave.png");
 
 //CONSTATNTS
 const FLOOR_HEIGHT = 48;
@@ -219,7 +250,7 @@ scene("game", () => {
     anchor("botleft"),
     area(),
     body({ isStatic: true }),
-    color(127, 200, 255),
+    color(93, 67, 44),
   ]);
 
   function jump() {
@@ -243,9 +274,14 @@ scene("game", () => {
   onKeyPress("down", sit_jump);
 
   function spawnTree() {
+
+    // obstacles
+    const obstacle = choose(["barrier", "cactus", "cactusone", "circle", "coin", "col", "crab", "dinosaur", "venus", "flower", "flowera", "heart", "hedge", "hedgepix", "horsea", "olive", "plate", "scale", "statue", "torch", "tree", "treea", "vase", "vasea", "vaseb", "vasec", "vased", "vasee", "venus", "wave"]);
+    
     // add tree obj
     add([
-      rect(48, rand(32, 96)),
+      sprite(obstacle),
+      scale(0.32),
       area(),
       outline(4),
       pos(width(), height() - FLOOR_HEIGHT),
