@@ -12,6 +12,7 @@ loadSprite("background", "assets/sprites/backgroundtwo.jpg");
 loadSprite("olympicicon", "assets/sprites/parisolympics.png");
 loadSound("gamemusic", "assets/sounds/walking.mp3");
 loadSprite("mainScreenBackground", "assets/images/gamestart3.jpg");
+loadSprite("heart-icon", "assets/sprites/heart.png");
 
 //CONSTATNTS
 const FLOOR_HEIGHT = 48;
@@ -21,7 +22,7 @@ const SPEED = 300;
 const CW = width() / 2;
 const CH = height() / 2;
 //Play GamePlay Music
-const gamemusic = play("gamemusic", {loop:true, volume:0.5})
+const gamemusic = play("gamemusic", { loop: true, volume: 0.5 })
 gamemusic.paused = true
 
 
@@ -64,7 +65,7 @@ function addButton(txt, p, f) {
 
 //START MENU
 scene("startmenu", () => {
-    add([
+  add([
     sprite("mainScreenBackground", {
       width: width(),
       height: height(),
@@ -78,15 +79,15 @@ scene("startmenu", () => {
   });
 
   addButton("Start ⏎", vec2(700, 600), () => {
-        go("game");
-    });
-    // Mute Button
-    addButton("Music", vec2(width() - 200, 90), () => {
-    if(gamemusic.paused == false){
-        gamemusic.paused = true
-    }else{gamemusic.paused = false}
-    });
-  
+    go("game");
+  });
+  // Mute Button
+  addButton("Music", vec2(width() - 200, 90), () => {
+    if (gamemusic.paused == false) {
+      gamemusic.paused = true
+    } else { gamemusic.paused = false }
+  });
+
   addButton("Credits →", vec2(1000, 600), () => {
     go("credits");
   });
@@ -103,9 +104,9 @@ scene("rules", () => {
   ]);
 
   add([
-    text("Rules:"), 
-    pos(width() / 2, height() / 2), 
-    scale(2), 
+    text("Rules:"),
+    pos(width() / 2, height() / 2),
+    scale(2),
     anchor("center")
   ]);
 
@@ -122,9 +123,9 @@ scene("credits", () => {
   ]);
 
   add([
-    text("Credits:"), 
-    pos(width() / 2, height() / 2), 
-    scale(2), 
+    text("Credits:"),
+    pos(width() / 2, height() / 2),
+    scale(2),
     anchor("center")
   ]);
 
@@ -145,12 +146,24 @@ scene("game", () => {
     pos(0, 0),
   ]);
 
-    // Mute Button
-    addButton("Music", vec2(width() - 200, 90), () => {
-    if(gamemusic.paused == false){
-        gamemusic.paused = true
-    }else{gamemusic.paused = false}
-    });
+  // initialize life counter
+  let remainingLives = 5;
+
+  // add heart icons to frontend
+  const lifeHearts = Array.from({ length: remainingLives }, (_, i) =>
+    add([
+      sprite("heart-icon"),
+      pos(CW + i * 40 - (remainingLives - 1) * 20, 40),
+      scale(0.5),
+    ])
+  );
+
+  // Mute Button
+  addButton("Music", vec2(width() - 200, 90), () => {
+    if (gamemusic.paused == false) {
+      gamemusic.paused = true
+    } else { gamemusic.paused = false }
+  });
 
   // define gravity
   setGravity(1600);
@@ -249,12 +262,19 @@ scene("game", () => {
   // start spawning trees
   spawnTree();
 
-  // lose if player collides with any game obj with tag "tree"
+  // decrement life and game over condition
   player.onCollide("fence", () => {
-    // go to "lose" scene and pass the score
-    go("lose", score);
-    // audio file goes here "play()"
-    addKaboom(player.pos);
+    remainingLives--;
+
+    if (remainingLives <= 0) {
+      destroy(lifeHearts.pop()); // remove the last heart icon
+      addKaboom(player.pos)
+      setTimeout(() => {
+        go("lose", score);
+      }, 600);
+    } else {
+      destroy(lifeHearts.pop()); // remove one heart from health bar
+    }
   });
 
   // keep track of score
@@ -275,12 +295,12 @@ scene("lose", (score) => {
   // Background Color
   add([rect(width(), height()), pos(0, 0), color(60, 50, 168)]);
 
-    // Mute Button
-    addButton("Music", vec2(width() - 200, 90), () => {
-    if(gamemusic.paused == false){
-        gamemusic.paused = true
-    }else{gamemusic.paused = false}
-    });
+  // Mute Button
+  addButton("Music", vec2(width() - 200, 90), () => {
+    if (gamemusic.paused == false) {
+      gamemusic.paused = true
+    } else { gamemusic.paused = false }
+  });
 
   // Add Olympic Icon
   add([sprite("olympicicon"), pos(CW, CH - 250), scale(2), anchor("center")]);
