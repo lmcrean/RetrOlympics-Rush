@@ -15,6 +15,7 @@ loadSprite("speakeroff", "assets/sprites/speakeroff.png");
 loadSound("gamemusic", "assets/sounds/running.wav");
 loadSound("blip", "assets/sounds/blip.mp3");
 loadSound("crash", "assets/sounds/collide.mp3");
+loadSound("finalhit", "assets/sounds/finalhit.mp3");
 loadSound("boing", "assets/sounds/mario-jump.mp3");
 loadSound("bling", "assets/sounds/start.wav");
 loadSound("gameoversound", "assets/sounds/game-over.mp3");
@@ -160,22 +161,14 @@ scene("startmenu", () => {
         //Mute music before starting the game
         GAMEMUSIC.volume = 0
     });
+  
+  addButton("Credits →", vec2(1000, 600), () => {
+      go("credits");
+  });
 
     // Audio button
     audioBtn(vec2(width() - 90, 90))
-  
-    go("game");
-  });
-  // Mute Button
-  addButton("Music", vec2(width() - 200, 90), () => {
-    if (gamemusic.paused == false) {
-      gamemusic.paused = true
-    } else { gamemusic.paused = false }
-  });
 
-  addButton("Credits →", vec2(1000, 600), () => {
-    go("credits");
-  });
 });
 
 // INITIATE GAME
@@ -223,6 +216,7 @@ scene("credits", () => {
 scene("game", () => {
   //Soundeffect
   const startMusic = play("bling")
+
   
   // Draw the background image onto the canvas
   const bgImage = add([
@@ -233,6 +227,9 @@ scene("game", () => {
     area(),
     pos(0, 0),
   ]);
+
+  // Audio button
+  audioBtn(vec2(width() - 90, 90))
 
   // initialize life counter
   let remainingLives = 5;
@@ -246,8 +243,7 @@ scene("game", () => {
     ])
   );
 
-    // Audio button
-    audioBtn(vec2(width() - 90, 90));
+
 
   // define gravity
   setGravity(1600);
@@ -308,7 +304,7 @@ scene("game", () => {
 
   function jump() {
     if (player.isGrounded()) {
-      if (muted==false){play("boing", {volume:0.1})}; //Soundeffect
+      play("boing"); //Soundeffect
       setGravity(1700); // Set gravity to 1600
       player.jump(JUMP_FORCE);
       
@@ -317,7 +313,7 @@ scene("game", () => {
 
   function jump_plus() {
     if (player.isGrounded()) {
-      if (muted==false){play("boing", {volume:0.1})};//Soundeffects
+      play("boing");//Soundeffects
       setGravity(1100); // Set gravity to 1600)
       player.jump(JUMP_FORCE);
     }
@@ -326,7 +322,6 @@ scene("game", () => {
   // jump when user press space
   onKeyPress("space", jump);
   onKeyPress("up", jump);
-  onClick(jump);
   onKeyPress("down", sit_jump);
 
   function spawnTree() {
@@ -357,19 +352,17 @@ scene("game", () => {
   // decrement life and game over condition
   player.onCollide("fence", () => {
     //Soundeffect
-    if (muted==false){play("crash")}
-    // go to "lose" scene and pass the score
-    go("lose", score);
-    // turn startmusic volume down
-    startMusic.volume = 0
-    addKaboom(player.pos);
+    play("crash")
+    
     remainingLives--;
 
     if (remainingLives <= 0) {
       destroy(lifeHearts.pop()); // remove the last heart icon
       addKaboom(player.pos)
+      play("finalhit")
       setTimeout(() => {
         go("lose", score);
+        startMusic.volume = 0 // turn startmusic volume down
       }, 600);
     } else {
       destroy(lifeHearts.pop()); // remove one heart from health bar
