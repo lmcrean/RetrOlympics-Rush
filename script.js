@@ -8,10 +8,16 @@ loadSprite("athlete-2", "assets/images/athlete-2.png");
 loadSprite("athlete-3", "assets/images/athlete-3.png");
 loadSprite("background", "assets/images/backgroundtwo.jpg");
 loadSprite("athlete", "assets/sprites/man.png");
-loadSprite("background", "assets/images/backgroundtwo.jpg");
 loadSprite("olympicicon", "assets/sprites/parisolympics.png");
 loadSprite("speaker", "assets/sprites/speaker.png");
 loadSprite("speakeroff", "assets/sprites/speakeroff.png");
+loadSprite("mainScreenBackground", "assets/images/backgroundeiffel.png");
+loadSprite("rings", "assets/images/olympicrignsneon.png");
+loadSprite("heart-icon", "assets/sprites/heart.png");
+loadSprite("logo", "assets/images/gamelogoplaceholder.png");
+loadSprite("tower", "assets/images/eiffeltower.png");
+
+//Sound Sprites
 loadSound("gamemusic", "assets/sounds/running.wav");
 loadSound("blip", "assets/sounds/blip.mp3");
 loadSound("crash", "assets/sounds/collide.mp3");
@@ -19,8 +25,6 @@ loadSound("finalhit", "assets/sounds/finalhit.mp3");
 loadSound("boing", "assets/sounds/mario-jump.mp3");
 loadSound("bling", "assets/sounds/start.wav");
 loadSound("gameoversound", "assets/sounds/game-over.mp3");
-loadSprite("mainScreenBackground", "assets/images/gamestart3.jpg");
-loadSprite("heart-icon", "assets/sprites/heart.png");
 
 //Obstacles
 loadSprite("barrier", "assets/images/obstacle/barrier.png");
@@ -61,15 +65,14 @@ const SPEED = 300;
 const CW = width() / 2;
 const CH = height() / 2;
 
-const GAMEMUSIC = play("gamemusic", {loop:true, volume: 0})
-
 // AUDIO
+const GAMEMUSIC = play("gamemusic", {loop:true, paused: true})
 
 // Variable for controlling audio
 let muted = true
 
 // Audio btn
-function audioBtn(p){
+function audioBtn(p, musicArray){
   //Add audio btn  
   const btn = add([
     pos(p),
@@ -96,7 +99,14 @@ function audioBtn(p){
       muted = true,
       volume(0.0)
       btnicon.use(sprite("speakeroff"))}
+    for(music in musicArray){
+        console.log(muted)
+        console.log(music)
+        music.paused = muted
+      }
   });
+
+
   return btn
 }
 
@@ -140,8 +150,8 @@ function addButton(txt, p, f) {
 
 //START MENU
 scene("startmenu", () => {
-  GAMEMUSIC.volume = 0.5
   muted==true ? volume(0) : volume(0.5);
+  GAMEMUSIC.paused= muted
 
   add([
     sprite("mainScreenBackground", {
@@ -149,31 +159,35 @@ scene("startmenu", () => {
       height: height(),
     }),
     area(),
-    pos(0, 0),
+    pos(0, 0)
   ]);
 
-  addButton("Rules ←", vec2(400, 600), () => {
+  //Add logo
+  add([sprite("logo"),pos(CW - 700, CH),])
+  add([sprite("rings"),pos(CW - 300, CH - 250), scale(0.5)])
+
+  
+
+  addButton("Rules ←", vec2(CW - 400, CH + 200), () => {
     go("rules");
   });
 
-  addButton("Start ⏎", vec2(700, 600), () => {
+  addButton("Start ⏎", vec2(CW, CH + 200), () => {
         go("game");
         //Mute music before starting the game
         GAMEMUSIC.volume = 0
     });
   
-  addButton("Credits →", vec2(1000, 600), () => {
+  addButton("Credits →", vec2(CW + 400, CH + 200), () => {
       go("credits");
   });
 
     // Audio button
-    audioBtn(vec2(width() - 90, 90))
+    audioBtn(vec2(width() - 90, 90), [GAMEMUSIC])
 
 });
 
-// INITIATE GAME
-go("startmenu");
-
+//Rules Scene
 scene("rules", () => {
   add([
     color(60, 50, 168),
@@ -193,6 +207,7 @@ scene("rules", () => {
   });
 })
 
+//Credits Scene
 scene("credits", () => {
   add([
     color(60, 50, 168),
@@ -211,6 +226,9 @@ scene("credits", () => {
     go("startmenu");
   });
 })
+
+// INITIATE GAME
+go("startmenu");
 
 //GAMEPLAY//
 scene("game", () => {
