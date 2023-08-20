@@ -10,7 +10,15 @@ loadSprite("background", "assets/images/backgroundtwo.jpg");
 loadSprite("athlete", "assets/sprites/man.png");
 loadSprite("background", "assets/images/backgroundtwo.jpg");
 loadSprite("olympicicon", "assets/sprites/parisolympics.png");
-loadSound("gamemusic", "assets/sounds/walking.mp3");
+loadSprite("speaker", "assets/sprites/speaker.png");
+loadSprite("speakeroff", "assets/sprites/speakeroff.png");
+loadSound("gamemusic", "assets/sounds/running.wav");
+loadSound("blip", "assets/sounds/blip.mp3");
+loadSound("crash", "assets/sounds/collide.mp3");
+loadSound("finalhit", "assets/sounds/finalhit.mp3");
+loadSound("boing", "assets/sounds/mario-jump.mp3");
+loadSound("bling", "assets/sounds/start.wav");
+loadSound("gameoversound", "assets/sounds/game-over.mp3");
 loadSprite("mainScreenBackground", "assets/images/gamestart3.jpg");
 loadSprite("heart-icon", "assets/sprites/heart.png");
 
@@ -52,10 +60,45 @@ const SPEED = 300;
 //Centerwidth cw and centerheight of the current screen
 const CW = width() / 2;
 const CH = height() / 2;
-//Play GamePlay Music
-const gamemusic = play("gamemusic", { loop: true, volume: 0.5 })
-gamemusic.paused = true
 
+const GAMEMUSIC = play("gamemusic", {loop:true, volume: 0})
+
+// AUDIO
+
+// Variable for controlling audio
+let muted = true
+
+// Audio btn
+function audioBtn(p){
+  //Add audio btn  
+  const btn = add([
+    pos(p),
+    rect(80, 80, { radius: 8 }),
+    area(),
+    anchor("center"),
+    outline(4),
+  ])
+  //add speaker as child object
+  const btnicon = btn.add([
+    sprite(muted ? "speakeroff": "speaker"),
+    anchor("center"),
+    scale(0.1)]);
+  // Hover mouse functionality
+  btn.onHoverUpdate(() => { btn.scale = vec2(1.2), setCursor("pointer")});
+  btn.onHoverEnd(() => {btn.scale = vec2(1)});
+  // Mute audio on click 
+  btn.onClick(() =>{
+    if(muted){
+      muted = false,
+      volume(0.5)
+      btnicon.use(sprite("speaker"))
+    }else{
+      muted = true,
+      volume(0.0)
+      btnicon.use(sprite("speakeroff"))}
+  });
+  return btn
+}
 
 function addButton(txt, p, f) {
   // add a parent background object
@@ -86,7 +129,8 @@ function addButton(txt, p, f) {
     btn.scale = vec2(1);
     btn.color = rgb();
   });
-
+  //Default button sound effect
+  btn.onClick(()=> play("blip"))
   // onClick() comes from area() component
   // it runs once when the object is clicked
   btn.onClick(f);
@@ -96,6 +140,9 @@ function addButton(txt, p, f) {
 
 //START MENU
 scene("startmenu", () => {
+  GAMEMUSIC.volume = 0.5
+  muted==true ? volume(0) : volume(0.5);
+
   add([
     sprite("mainScreenBackground", {
       width: width(),
@@ -110,18 +157,18 @@ scene("startmenu", () => {
   });
 
   addButton("Start ⏎", vec2(700, 600), () => {
-    go("game");
-  });
-  // Mute Button
-  addButton("Music", vec2(width() - 200, 90), () => {
-    if (gamemusic.paused == false) {
-      gamemusic.paused = true
-    } else { gamemusic.paused = false }
+        go("game");
+        //Mute music before starting the game
+        GAMEMUSIC.volume = 0
+    });
+  
+  addButton("Credits →", vec2(1000, 600), () => {
+      go("credits");
   });
 
-  addButton("Credits →", vec2(1000, 600), () => {
-    go("credits");
-  });
+    // Audio button
+    audioBtn(vec2(width() - 90, 90))
+
 });
 
 // INITIATE GAME
@@ -167,6 +214,10 @@ scene("credits", () => {
 
 //GAMEPLAY//
 scene("game", () => {
+  //Soundeffect
+  const startMusic = play("bling")
+
+  
   // Draw the background image onto the canvas
   const bgImage = add([
     sprite("background", {
@@ -176,6 +227,9 @@ scene("game", () => {
     area(),
     pos(0, 0),
   ]);
+
+  // Audio button
+  audioBtn(vec2(width() - 90, 90))
 
   // initialize life counter
   let remainingLives = 5;
@@ -189,12 +243,7 @@ scene("game", () => {
     ])
   );
 
-  // Mute Button
-  addButton("Music", vec2(width() - 200, 90), () => {
-    if (gamemusic.paused == false) {
-      gamemusic.paused = true
-    } else { gamemusic.paused = false }
-  });
+
 
   // define gravity
   setGravity(1600);
@@ -255,14 +304,17 @@ scene("game", () => {
 
   function jump() {
     if (player.isGrounded()) {
+      play("boing"); //Soundeffect
       setGravity(1700); // Set gravity to 1600
       player.jump(JUMP_FORCE);
+      
     }
   }
 
   function jump_plus() {
     if (player.isGrounded()) {
-      setGravity(1100); // Set gravity to 1600
+      play("boing");//Soundeffects
+      setGravity(1100); // Set gravity to 1600)
       player.jump(JUMP_FORCE);
     }
   }
@@ -270,7 +322,6 @@ scene("game", () => {
   // jump when user press space
   onKeyPress("space", jump);
   onKeyPress("up", jump);
-  onClick(jump);
   onKeyPress("down", sit_jump);
 
   function spawnTree() {
@@ -300,13 +351,18 @@ scene("game", () => {
 
   // decrement life and game over condition
   player.onCollide("fence", () => {
+    //Soundeffect
+    play("crash")
+    
     remainingLives--;
 
     if (remainingLives <= 0) {
       destroy(lifeHearts.pop()); // remove the last heart icon
       addKaboom(player.pos)
+      play("finalhit")
       setTimeout(() => {
         go("lose", score);
+        startMusic.volume = 0 // turn startmusic volume down
       }, 600);
     } else {
       destroy(lifeHearts.pop()); // remove one heart from health bar
@@ -327,16 +383,14 @@ scene("game", () => {
 
 //GAME OVER SCREEN
 scene("lose", (score) => {
+  //Soundeffects
+  const gameOver = play("gameoversound");
 
   // Background Color
   add([rect(width(), height()), pos(0, 0), color(60, 50, 168)]);
 
-  // Mute Button
-  addButton("Music", vec2(width() - 200, 90), () => {
-    if (gamemusic.paused == false) {
-      gamemusic.paused = true
-    } else { gamemusic.paused = false }
-  });
+    // Audio button
+    audioBtn(vec2(width() - 90, 90));
 
   // Add Olympic Icon
   add([sprite("olympicicon"), pos(CW, CH - 250), scale(2), anchor("center")]);
@@ -353,9 +407,13 @@ scene("lose", (score) => {
   //Add Retry and Menu buttons for player to navigate
   addButton("Retry", vec2(CW - 150, CH + 250), () => {
     go("game");
+    //mute gameover music
+    gameOver.volume = 0
   });
 
   addButton("Menu", vec2(CW + 150, CH + 250), () => {
     go("startmenu");
+    //mute gameover music
+    gameOver.volume = 0
   });
 });
