@@ -58,7 +58,7 @@ loadSprite("venus", "assets/images/obstacle/venus.png");
 loadSprite("wave", "assets/images/obstacle/wave.png");
 
 //CONSTATNTS
-const FLOOR_HEIGHT = 48;
+const FLOOR_HEIGHT = 50;
 const JUMP_FORCE = 1000;
 const SPEED = 300;
 //Centerwidth cw and centerheight of the current screen
@@ -350,7 +350,7 @@ scene("game", () => {
     // add tree obj
     add([
       sprite(obstacle),
-      scale(0.32),
+      scale(0.3),
       area(),
       outline(4),
       pos(width(), height() - FLOOR_HEIGHT),
@@ -361,7 +361,7 @@ scene("game", () => {
     ]);
 
     // wait a random amount of time to spawn next tree
-    wait(rand(1, 2), spawnTree);
+    wait(rand(2, 3), spawnTree);
   }
 
   // start spawning trees
