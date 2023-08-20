@@ -6,9 +6,9 @@ kaboom({ width: window.innerWidth, height: window.innerHeight });
 loadSprite("athlete-1", "assets/images/athlete-1.png");
 loadSprite("athlete-2", "assets/images/athlete-2.png");
 loadSprite("athlete-3", "assets/images/athlete-3.png");
-loadSprite("background", "assets/sprites/backgroundtwo.jpg");
+loadSprite("background", "assets/images/backgroundtwo.jpg");
 loadSprite("athlete", "assets/sprites/man.png");
-loadSprite("background", "assets/sprites/backgroundtwo.jpg");
+loadSprite("background", "assets/images/backgroundtwo.jpg");
 loadSprite("olympicicon", "assets/sprites/parisolympics.png");
 loadSprite("speaker", "assets/sprites/speaker.png");
 loadSprite("speakeroff", "assets/sprites/speakeroff.png");
@@ -19,6 +19,38 @@ loadSound("boing", "assets/sounds/mario-jump.mp3");
 loadSound("bling", "assets/sounds/start.wav");
 loadSound("gameoversound", "assets/sounds/game-over.mp3");
 loadSprite("mainScreenBackground", "assets/images/gamestart3.jpg");
+loadSprite("heart-icon", "assets/sprites/heart.png");
+
+//Obstacles
+loadSprite("barrier", "assets/images/obstacle/barrier.png");
+loadSprite("cactus", "assets/images/obstacle/cactus.png");
+loadSprite("cactusone", "assets/images/obstacle/cactusone.png");
+loadSprite("circle", "assets/images/obstacle/circle.png");
+loadSprite("coin", "assets/images/obstacle/coin.png");
+loadSprite("col", "assets/images/obstacle/col.png");
+loadSprite("crab", "assets/images/obstacle/crab.png");
+loadSprite("dinosaur", "assets/images/obstacle/dinosaur.png");
+loadSprite("flower", "assets/images/obstacle/flower.png");
+loadSprite("flowera", "assets/images/obstacle/flower.png");
+loadSprite("heart", "assets/images/obstacle/heart.png");
+loadSprite("hedge", "assets/images/obstacle/hedge.png");
+loadSprite("hedgepix", "assets/images/obstacle/hedgepix.png");
+loadSprite("horsea", "assets/images/obstacle/horsea.png");
+loadSprite("olive", "assets/images/obstacle/olive.png");
+loadSprite("plate", "assets/images/obstacle/plate.png");
+loadSprite("scale", "assets/images/obstacle/scale.png");
+loadSprite("statue", "assets/images/obstacle/statue.png");
+loadSprite("torch", "assets/images/obstacle/torch.png");
+loadSprite("tree", "assets/images/obstacle/tree.png");
+loadSprite("treea", "assets/images/obstacle/treea.png");
+loadSprite("vase", "assets/images/obstacle/vase.png");
+loadSprite("vasea", "assets/images/obstacle/vasea.png");
+loadSprite("vaseb", "assets/images/obstacle/vaseb.png");
+loadSprite("vasec", "assets/images/obstacle/vasec.png");
+loadSprite("vased", "assets/images/obstacle/vased.png");
+loadSprite("vasee", "assets/images/obstacle/vasee.png");
+loadSprite("venus", "assets/images/obstacle/venus.png");
+loadSprite("wave", "assets/images/obstacle/wave.png");
 
 //CONSTATNTS
 const FLOOR_HEIGHT = 48;
@@ -110,7 +142,7 @@ scene("startmenu", () => {
   GAMEMUSIC.volume = 0.5
   muted==true ? volume(0) : volume(0.5);
 
-    add([
+  add([
     sprite("mainScreenBackground", {
       width: width(),
       height: height(),
@@ -132,6 +164,15 @@ scene("startmenu", () => {
     // Audio button
     audioBtn(vec2(width() - 90, 90))
   
+    go("game");
+  });
+  // Mute Button
+  addButton("Music", vec2(width() - 200, 90), () => {
+    if (gamemusic.paused == false) {
+      gamemusic.paused = true
+    } else { gamemusic.paused = false }
+  });
+
   addButton("Credits →", vec2(1000, 600), () => {
     go("credits");
   });
@@ -148,9 +189,9 @@ scene("rules", () => {
   ]);
 
   add([
-    text("Rules:"), 
-    pos(width() / 2, height() / 2), 
-    scale(2), 
+    text("Rules:"),
+    pos(width() / 2, height() / 2),
+    scale(2),
     anchor("center")
   ]);
 
@@ -167,9 +208,9 @@ scene("credits", () => {
   ]);
 
   add([
-    text("Credits:"), 
-    pos(width() / 2, height() / 2), 
-    scale(2), 
+    text("Credits:"),
+    pos(width() / 2, height() / 2),
+    scale(2),
     anchor("center")
   ]);
 
@@ -192,6 +233,18 @@ scene("game", () => {
     area(),
     pos(0, 0),
   ]);
+
+  // initialize life counter
+  let remainingLives = 5;
+
+  // add heart icons to frontend
+  const lifeHearts = Array.from({ length: remainingLives }, (_, i) =>
+    add([
+      sprite("heart-icon"),
+      pos(CW + i * 40 - (remainingLives - 1) * 20, 40),
+      scale(0.5),
+    ])
+  );
 
     // Audio button
     audioBtn(vec2(width() - 90, 90));
@@ -250,7 +303,7 @@ scene("game", () => {
     anchor("botleft"),
     area(),
     body({ isStatic: true }),
-    color(127, 200, 255),
+    color(93, 67, 44),
   ]);
 
   function jump() {
@@ -277,9 +330,14 @@ scene("game", () => {
   onKeyPress("down", sit_jump);
 
   function spawnTree() {
+
+    // obstacles
+    const obstacle = choose(["barrier", "cactus", "cactusone", "circle", "coin", "col", "crab", "dinosaur", "venus", "flower", "flowera", "heart", "hedge", "hedgepix", "horsea", "olive", "plate", "scale", "statue", "torch", "tree", "treea", "vase", "vasea", "vaseb", "vasec", "vased", "vasee", "venus", "wave"]);
+    
     // add tree obj
     add([
-      rect(48, rand(32, 96)),
+      sprite(obstacle),
+      scale(0.32),
       area(),
       outline(4),
       pos(width(), height() - FLOOR_HEIGHT),
@@ -296,7 +354,7 @@ scene("game", () => {
   // start spawning trees
   spawnTree();
 
-  // lose if player collides with any game obj with tag "tree"
+  // decrement life and game over condition
   player.onCollide("fence", () => {
     //Soundeffect
     if (muted==false){play("crash")}
@@ -305,6 +363,17 @@ scene("game", () => {
     // turn startmusic volume down
     startMusic.volume = 0
     addKaboom(player.pos);
+    remainingLives--;
+
+    if (remainingLives <= 0) {
+      destroy(lifeHearts.pop()); // remove the last heart icon
+      addKaboom(player.pos)
+      setTimeout(() => {
+        go("lose", score);
+      }, 600);
+    } else {
+      destroy(lifeHearts.pop()); // remove one heart from health bar
+    }
   });
 
   // keep track of score
