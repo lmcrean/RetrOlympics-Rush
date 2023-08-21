@@ -429,7 +429,6 @@ scene("game", () => {
     remainingLives--;
 
     if (remainingLives <= 0) {
-      destroy(lifeHearts.pop()); // remove the last heart icon
       addKaboom(player.pos)
       play("finalhit")
       setTimeout(() => {
