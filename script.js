@@ -40,6 +40,7 @@ loadSprite("crab", "assets/images/obstacle/crab.png");
 loadSprite("dinosaur", "assets/images/obstacle/dinosaur.png");
 loadSprite("flower", "assets/images/obstacle/flower.png");
 loadSprite("flowera", "assets/images/obstacle/flower.png");
+loadSprite("godl", "assets/images/obstacle/godl.png");
 loadSprite("heart", "assets/images/obstacle/heart.png");
 loadSprite("hedge", "assets/images/obstacle/hedge.png");
 loadSprite("hedgepix", "assets/images/obstacle/hedgepix.png");
