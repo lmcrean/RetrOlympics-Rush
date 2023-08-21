@@ -21,7 +21,7 @@ The player must navigate an Olympic-themed obstacle course in front of a crowd o
 
 [![Deployed site](https://img.shields.io/badge/Deployed_Site-%23E34F26.svg?style=for-the-badge&logo=googleChrome&logoColor=white&color=purple)](https://lmcrean.github.io/RetrOlympics-Rush/)
 
-This project is deployed and can be accessed at [https://lmcrean.github.io/RetroOlympics-Rush/](https://lmcrean.github.io/RetroOlympics-Rush/).
+This project is deployed and can be accessed at [https://lmcrean.github.io/RetrOlympics-Rush/](https://lmcrean.github.io/RetrOlympics-Rush/).
 
 ***
 
@@ -143,4 +143,5 @@ Gennadiy: Jumping logic, technical support
 Hilla: Javascript lead, SFX logic, game over screen
 Tina: Mute/unmute button,
 Laurie: Scrum Master
+
 
