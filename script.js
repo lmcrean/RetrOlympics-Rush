@@ -12,10 +12,8 @@ loadSprite("olympicicon", "assets/sprites/parisolympics.png");
 loadSprite("speaker", "assets/sprites/speaker.png");
 loadSprite("speakeroff", "assets/sprites/speakeroff.png");
 loadSprite("mainScreenBackground", "assets/images/backgroundeiffel.png");
-loadSprite("rings", "assets/images/olympicrignsneon.png");
 loadSprite("heart-icon", "assets/sprites/heart.png");
-loadSprite("logo", "assets/images/gamelogoplaceholder.png");
-loadSprite("tower", "assets/images/eiffeltower.png");
+loadSprite("logo", "assets/images/logotorchclip.png");
 loadSprite("downkey", "assets/images/downbutton.png");
 loadSprite("upkey", "assets/images/upbutton.png");
 loadSprite("spacebar", "assets/images/spacekey.png");
@@ -164,8 +162,7 @@ scene("startmenu", () => {
   ]);
 
   //Add logo
-  add([sprite("logo"),pos(CW - 400, CH), scale(0.6)])
-  add([sprite("rings"),pos(CW - 300, CH - 250), scale(0.5)])
+  add([sprite("logo"),pos(CW-300, CH-350), scale(1)])
 
   addButton("Rules ←", vec2(CW - 400, CH + 200), () => {
     go("rules");
