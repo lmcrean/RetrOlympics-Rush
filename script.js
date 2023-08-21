@@ -16,6 +16,9 @@ loadSprite("rings", "assets/images/olympicrignsneon.png");
 loadSprite("heart-icon", "assets/sprites/heart.png");
 loadSprite("logo", "assets/images/gamelogoplaceholder.png");
 loadSprite("tower", "assets/images/eiffeltower.png");
+loadSprite("downkey", "assets/images/downbutton.png");
+loadSprite("upkey", "assets/images/upbutton.png");
+loadSprite("spacebar", "assets/images/spacekey.png");
 
 //Sound Sprites
 loadSound("gamemusic", "assets/sounds/running.wav");
@@ -23,7 +26,7 @@ loadSound("blip", "assets/sounds/blip.mp3");
 loadSound("crash", "assets/sounds/collide.mp3");
 loadSound("finalhit", "assets/sounds/finalhit.mp3");
 loadSound("boing", "assets/sounds/mario-jump.mp3");
-loadSound("bling", "assets/sounds/start.wav");
+loadSound("startsound", "assets/sounds/short-start.mp3");
 loadSound("gameoversound", "assets/sounds/game-over.mp3");
 
 // Obstacles
@@ -69,8 +72,7 @@ const CW = width() / 2;
 const CH = height() / 2;
 
 // AUDIO
-const GAMEMUSIC = play("gamemusic", {loop:true, paused: true})
-
+const GAMEMUSIC = play("gamemusic", {loop:true, paused: true, volume: 0.5})
 // Variable for controlling audio
 let muted = true
 
@@ -102,17 +104,14 @@ function audioBtn(p, musicArray){
       muted = true,
       volume(0.0)
       btnicon.use(sprite("speakeroff"))}
-    for(music in musicArray){
-        console.log(muted)
-        console.log(music)
+    for(music of musicArray){
         music.paused = muted
       }
   });
-
-
   return btn
 }
 
+// ONCLICK BUTTON
 function addButton(txt, p, f) {
   // add a parent background object
   const btn = add([
@@ -153,9 +152,9 @@ function addButton(txt, p, f) {
 
 //START MENU
 scene("startmenu", () => {
-  muted==true ? volume(0) : volume(0.5);
   GAMEMUSIC.paused= muted
-
+  muted==true ? volume(0) : volume(0.5);
+  
   add([
     sprite("mainScreenBackground", {
       width: width(),
@@ -166,10 +165,8 @@ scene("startmenu", () => {
   ]);
 
   //Add logo
-  add([sprite("logo"),pos(CW - 700, CH),])
+  add([sprite("logo"),pos(CW - 400, CH), scale(0.6)])
   add([sprite("rings"),pos(CW - 300, CH - 250), scale(0.5)])
-
-  
 
   addButton("Rules ←", vec2(CW - 400, CH + 200), () => {
     go("rules");
@@ -178,7 +175,6 @@ scene("startmenu", () => {
   addButton("Start ⏎", vec2(CW, CH + 200), () => {
         go("game");
         //Mute music before starting the game
-        GAMEMUSIC.volume = 0
     });
   
   addButton("Credits →", vec2(CW + 400, CH + 200), () => {
@@ -190,25 +186,51 @@ scene("startmenu", () => {
 
 });
 
+
 //Rules Scene
 scene("rules", () => {
-  add([
-    color(60, 50, 168),
-    rect(width(), height()),
-    pos(0, 0),
-  ]);
+  setBackground(60, 50, 168)
+  
+  const textbox = add([
+    rect(width() - 200, 600, { radius: 32 }),
+    anchor("center"),
+    pos(center().x, center().y),
+    outline(4),
+  ])
 
   add([
-    text("Rules:"),
-    pos(width() / 2, height() / 2),
+    text("Game Rules"),
+    pos(center().x, CH-250),
     scale(2),
-    anchor("center")
+    anchor("center"),
+    color(0,0,0),
   ]);
 
-  addButton("Go back ←", vec2(400, 600), () => {
-    go("startmenu");
+  function generateText(line, height){
+    add([
+      text(line),
+      pos(center().x, height),
+      scale(1),
+      anchor("center"),
+      color(0,0,0),
+    ]);
+  }
+
+  generateText("Avoid oncoming objects, by performing a", CH-150)
+  generateText("small jump (up-key/space-bar)", CH-35)
+  generateText("or a big jump (down-key).", CH+90)
+  generateText("Running to an obstacle causes you to loose a medal.", CH+150)
+  generateText("Game finishes once all 5 medals are lost.", CH + 200)
+
+  add([sprite("upkey"),pos(CW-30, CH-130), scale(0.5)])
+  add([sprite("spacebar"),pos(CW +115, CH-130), scale(0.5)])
+  add([sprite("downkey"),pos(CW + 75, CH - 5), scale(0.5)])
+
+  addButton("Go back ←", vec2(CW, CH + 360), () => {
+  go("startmenu");
   });
 })
+
 
 //Credits Scene
 scene("credits", () => {
@@ -236,7 +258,7 @@ go("startmenu");
 //GAMEPLAY//
 scene("game", () => {
   //Soundeffect
-  const startMusic = play("bling")
+  const startMusic = play("startsound")
 
   
   // Draw the background image onto the canvas
@@ -250,7 +272,7 @@ scene("game", () => {
   ]);
 
   // Audio button
-  audioBtn(vec2(width() - 90, 90))
+  audioBtn(vec2(width() - 90, 90), [])
 
   // initialize life counter
   let remainingLives = 5;
@@ -258,12 +280,11 @@ scene("game", () => {
   // add heart icons to frontend
   const lifeHearts = Array.from({ length: remainingLives }, (_, i) =>
     add([
-      sprite("heart-icon"),
+      sprite("coin"),
       pos(CW + i * 40 - (remainingLives - 1) * 20, 40),
-      scale(0.5),
+      scale(0.1),
     ])
   );
-
 
 
   // define gravity
@@ -385,7 +406,7 @@ scene("game", () => {
       play("finalhit")
       setTimeout(() => {
         go("lose", score);
-        startMusic.volume = 0 // turn startmusic volume down
+        GAMEMUSIC.paused = true // turn startmusic volume down
       }, 600);
     } else {
       destroy(lifeHearts.pop()); // remove one heart from health bar
@@ -413,7 +434,7 @@ scene("lose", (score) => {
   add([rect(width(), height()), pos(0, 0), color(60, 50, 168)]);
 
     // Audio button
-    audioBtn(vec2(width() - 90, 90));
+    audioBtn(vec2(width() - 90, 90), []);
 
   // Add Olympic Icon
   add([sprite("olympicicon"), pos(CW, CH - 250), scale(2), anchor("center")]);
