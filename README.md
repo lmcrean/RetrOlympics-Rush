@@ -137,11 +137,17 @@ Open sources graphics were used from these websites:
 ## Credits 
 
 Alena: Design, sourcing media, Obstacle Logic
+
 Berat: Lives remaining feature, sourcing National Anthem
+
 Chinonso: Buttons, menu logic, game over screen
+
 Gennadiy: Jumping logic, technical support
+
 Hilla: Javascript lead, SFX logic, game over screen
-Tina: Mute/unmute button,
+
+Tina: Mute/unmute button
+
 Laurie: Scrum Master
 
 
