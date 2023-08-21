@@ -16,6 +16,9 @@ loadSprite("rings", "assets/images/olympicrignsneon.png");
 loadSprite("heart-icon", "assets/sprites/heart.png");
 loadSprite("logo", "assets/images/gamelogoplaceholder.png");
 loadSprite("tower", "assets/images/eiffeltower.png");
+loadSprite("downkey", "assets/images/downbutton.png");
+loadSprite("upkey", "assets/images/upbutton.png");
+loadSprite("spacebar", "assets/images/spacekey.png");
 
 //Sound Sprites
 loadSound("gamemusic", "assets/sounds/running.wav");
@@ -105,8 +108,6 @@ function audioBtn(p, musicArray){
         music.paused = muted
       }
   });
-
-
   return btn
 }
 
@@ -163,10 +164,8 @@ scene("startmenu", () => {
   ]);
 
   //Add logo
-  add([sprite("logo"),pos(CW - 700, CH),])
+  add([sprite("logo"),pos(CW - 400, CH), scale(0.6)])
   add([sprite("rings"),pos(CW - 300, CH - 250), scale(0.5)])
-
-  
 
   addButton("Rules ←", vec2(CW - 400, CH + 200), () => {
     go("rules");
@@ -187,25 +186,51 @@ scene("startmenu", () => {
 
 });
 
+
 //Rules Scene
 scene("rules", () => {
-  add([
-    color(60, 50, 168),
-    rect(width(), height()),
-    pos(0, 0),
-  ]);
+  setBackground(60, 50, 168)
+  
+  const textbox = add([
+    rect(width() - 200, 600, { radius: 32 }),
+    anchor("center"),
+    pos(center().x, center().y),
+    outline(4),
+  ])
 
   add([
-    text("Rules:"),
-    pos(width() / 2, height() / 2),
+    text("Game Rules"),
+    pos(center().x, CH-250),
     scale(2),
-    anchor("center")
+    anchor("center"),
+    color(0,0,0),
   ]);
 
-  addButton("Go back ←", vec2(400, 600), () => {
-    go("startmenu");
+  function generateText(line, height){
+    add([
+      text(line),
+      pos(center().x, height),
+      scale(1),
+      anchor("center"),
+      color(0,0,0),
+    ]);
+  }
+
+  generateText("Avoid oncoming objects, by performing a", CH-150)
+  generateText("small jump (up-key/space-bar)", CH-35)
+  generateText("or a big jump (down-key).", CH+90)
+  generateText("Running to an obstacle causes you to loose a medal.", CH+150)
+  generateText("Game finishes once all 5 medals are lost.", CH + 200)
+
+  add([sprite("upkey"),pos(CW-30, CH-130), scale(0.5)])
+  add([sprite("spacebar"),pos(CW +115, CH-130), scale(0.5)])
+  add([sprite("downkey"),pos(CW + 75, CH - 5), scale(0.5)])
+
+  addButton("Go back ←", vec2(CW, CH + 360), () => {
+  go("startmenu");
   });
 })
+
 
 //Credits Scene
 scene("credits", () => {
@@ -255,12 +280,11 @@ scene("game", () => {
   // add heart icons to frontend
   const lifeHearts = Array.from({ length: remainingLives }, (_, i) =>
     add([
-      sprite("heart-icon"),
+      sprite("coin"),
       pos(CW + i * 40 - (remainingLives - 1) * 20, 40),
-      scale(0.5),
+      scale(0.1),
     ])
   );
-
 
 
   // define gravity
