@@ -19,6 +19,7 @@ loadSprite("tower", "assets/images/eiffeltower.png");
 loadSprite("downkey", "assets/images/downbutton.png");
 loadSprite("upkey", "assets/images/upbutton.png");
 loadSprite("spacebar", "assets/images/spacekey.png");
+loadSprite("gameoverbackground", "assets/images/gameoverbackground.png");
 
 //Sound Sprites
 loadSound("gamemusic", "assets/sounds/running.wav");
@@ -430,8 +431,15 @@ scene("lose", (score) => {
   //Soundeffects
   const gameOver = play("gameoversound");
 
-  // Background Color
-  add([rect(width(), height()), pos(0, 0), color(60, 50, 168)]);
+  // Background image
+  add([
+    sprite("gameoverbackground", {
+      width: width(),
+      height: height(),
+    }),
+    area(),
+    pos(0, 0)
+  ]);
 
     // Audio button
     audioBtn(vec2(width() - 90, 90), []);
