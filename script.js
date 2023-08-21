@@ -71,12 +71,12 @@ const CW = width() / 2;
 const CH = height() / 2;
 
 // AUDIO
-const GAMEMUSIC = play("titlemusic", {loop:true, paused: true, volume: 0.5})
+const GAMEMUSIC = play("titlemusic", { loop: true, paused: true, volume: 0.5 })
 // Variable for controlling audio
 let muted = true
 
 // Audio btn
-function audioBtn(p, musicArray){
+function audioBtn(p, musicArray) {
   //Add audio btn  
   const btn = add([
     pos(p),
@@ -87,25 +87,26 @@ function audioBtn(p, musicArray){
   ])
   //add speaker as child object
   const btnicon = btn.add([
-    sprite(muted ? "speakeroff": "speaker"),
+    sprite(muted ? "speakeroff" : "speaker"),
     anchor("center"),
     scale(0.1)]);
   // Hover mouse functionality
-  btn.onHoverUpdate(() => { btn.scale = vec2(1.2), setCursor("pointer")});
-  btn.onHoverEnd(() => {btn.scale = vec2(1)});
+  btn.onHoverUpdate(() => { btn.scale = vec2(1.2), setCursor("pointer") });
+  btn.onHoverEnd(() => { btn.scale = vec2(1) });
   // Mute audio on click 
-  btn.onClick(() =>{
-    if(muted){
+  btn.onClick(() => {
+    if (muted) {
       muted = false,
-      volume(0.5)
+        volume(0.5)
       btnicon.use(sprite("speaker"))
-    }else{
+    } else {
       muted = true,
-      volume(0.0)
-      btnicon.use(sprite("speakeroff"))}
-    for(music of musicArray){
-        music.paused = muted
-      }
+        volume(0.0)
+      btnicon.use(sprite("speakeroff"))
+    }
+    for (music of musicArray) {
+      music.paused = muted
+    }
   });
   return btn
 }
@@ -141,7 +142,7 @@ function addButton(txt, p, f) {
     btn.color = rgb();
   });
   //Default button sound effect
-  btn.onClick(()=> play("blip"))
+  btn.onClick(() => play("blip"))
   // onClick() comes from area() component
   // it runs once when the object is clicked
   btn.onClick(f);
@@ -151,9 +152,9 @@ function addButton(txt, p, f) {
 
 //START MENU
 scene("startmenu", () => {
-  GAMEMUSIC.paused= muted
-  muted==true ? volume(0) : volume(0.5);
-  
+  GAMEMUSIC.paused = muted
+  muted == true ? volume(0) : volume(0.5);
+
   add([
     sprite("mainScreenBackground", {
       width: width(),
@@ -164,22 +165,22 @@ scene("startmenu", () => {
   ]);
 
   //Add logo
-  add([sprite("logo"),pos(CW-300, CH-350), scale(1)])
+  add([sprite("logo"), pos(CW - 300, CH - 350), scale(1)])
 
   addButton("Rules ←", vec2(CW - 400, CH + 200), () => {
     go("rules");
   });
 
   addButton("Start ⏎", vec2(CW, CH + 200), () => {
-        go("game");
-    });
-  
-  addButton("Credits →", vec2(CW + 400, CH + 200), () => {
-      go("credits");
+    go("game");
   });
 
-    // Audio button
-    audioBtn(vec2(width() - 90, 90), [GAMEMUSIC])
+  addButton("Credits →", vec2(CW + 400, CH + 200), () => {
+    go("credits");
+  });
+
+  // Audio button
+  audioBtn(vec2(width() - 90, 90), [GAMEMUSIC])
 
 });
 
@@ -187,7 +188,7 @@ scene("startmenu", () => {
 //Rules Scene
 scene("rules", () => {
   setBackground(60, 50, 168)
-  
+
   const textbox = add([
     rect(width() - 200, 600, { radius: 32 }),
     anchor("center"),
@@ -197,34 +198,34 @@ scene("rules", () => {
 
   add([
     text("Game Rules"),
-    pos(center().x, CH-250),
+    pos(center().x, CH - 250),
     scale(2),
     anchor("center"),
-    color(0,0,0),
+    color(0, 0, 0),
   ]);
 
-  function generateText(line, height){
+  function generateText(line, height) {
     add([
       text(line),
       pos(center().x, height),
       scale(1),
       anchor("center"),
-      color(0,0,0),
+      color(0, 0, 0),
     ]);
   }
 
-  generateText("Avoid oncoming objects, by performing a", CH-150)
-  generateText("small jump (up-key/space-bar)", CH-35)
-  generateText("or a big jump (down-key).", CH+90)
-  generateText("Running to an obstacle causes you to loose a medal.", CH+150)
+  generateText("Avoid oncoming objects, by performing a", CH - 150)
+  generateText("small jump (up-key/space-bar)", CH - 35)
+  generateText("or a big jump (down-key).", CH + 90)
+  generateText("Running to an obstacle causes you to loose a medal.", CH + 150)
   generateText("Game finishes once all 5 medals are lost.", CH + 200)
 
-  add([sprite("upkey"),pos(CW-30, CH-130), scale(0.5)])
-  add([sprite("spacebar"),pos(CW +115, CH-130), scale(0.5)])
-  add([sprite("downkey"),pos(CW + 75, CH - 5), scale(0.5)])
+  add([sprite("upkey"), pos(CW - 30, CH - 130), scale(0.5)])
+  add([sprite("spacebar"), pos(CW + 115, CH - 130), scale(0.5)])
+  add([sprite("downkey"), pos(CW + 75, CH - 5), scale(0.5)])
 
   addButton("Go back ←", vec2(CW, CH + 360), () => {
-  go("startmenu");
+    go("startmenu");
   });
 })
 
@@ -232,7 +233,7 @@ scene("rules", () => {
 //Credits Scene
 scene("credits", () => {
   setBackground(60, 50, 168)
-  
+
   const textbox = add([
     rect(width() - 200, 600, { radius: 32 }),
     anchor("center"),
@@ -242,32 +243,32 @@ scene("credits", () => {
 
   add([
     text("Credits"),
-    pos(center().x, CH-250),
+    pos(center().x, CH - 250),
     scale(1.2),
     anchor("center"),
-    color(0,0,0),
+    color(0, 0, 0),
   ]);
 
-  function generateText(line, height, textSize){
+  function generateText(line, height, textSize) {
     add([
       text(line),
       pos(center().x, height),
       scale(textSize),
       anchor("center"),
-      color(0,0,0),
+      color(0, 0, 0),
     ]);
   }
-  generateText("Alena", CH-200, 0.8)
-  generateText("Design, Sourcing media, Obstacle Logic", CH-175, 0.6)
-  generateText("Berat", CH-125, 0.8)
-  generateText("Score logic, remaining lives feature, sourcing media", CH-100, 0.6)
-  generateText("Chinonso", CH-50, 0.8)
-  generateText("Menu logic, Graphics", CH-25, 0.6)
-  generateText("Gennadiy", CH+25, 0.8)
-  generateText("Double Jump features, technical support", CH+50, 0.6)
-  generateText("Hilla", CH +100, 0.8)
-  generateText("JavaScript lead, SFX logic and technical support", CH+125, 0.6)
-  generateText("Tina", CH+175, 0.8)
+  generateText("Alena", CH - 200, 0.8)
+  generateText("Design, Sourcing media, Obstacle Logic", CH - 175, 0.6)
+  generateText("Berat", CH - 125, 0.8)
+  generateText("Score logic, remaining lives feature, sourcing media", CH - 100, 0.6)
+  generateText("Chinonso", CH - 50, 0.8)
+  generateText("Menu logic, Graphics", CH - 25, 0.6)
+  generateText("Gennadiy", CH + 25, 0.8)
+  generateText("Double Jump features, technical support", CH + 50, 0.6)
+  generateText("Hilla", CH + 100, 0.8)
+  generateText("JavaScript lead, SFX logic and technical support", CH + 125, 0.6)
+  generateText("Tina", CH + 175, 0.8)
   generateText("Mute button", CH + 200, 0.6)
   generateText("© 2023 [The Olympians | Code Institute]", CH + 250, 0.8)
 
@@ -282,7 +283,7 @@ go("startmenu");
 //GAMEPLAY//
 scene("game", () => {
   //Soundeffect
-  GAMEMUSIC.paused= muted
+  GAMEMUSIC.paused = muted
   const startMusic = play("startsound")
 
   // Draw the background image onto the canvas
@@ -373,7 +374,7 @@ scene("game", () => {
       play("boing"); //Soundeffect
       setGravity(1700); // Set gravity to 1600
       player.jump(JUMP_FORCE);
-      
+
     }
   }
 
@@ -394,12 +395,12 @@ scene("game", () => {
 
     // Define obstacles
     const obstacle = choose(["barrier", "cactus", "cactusone", "circle",
-    "coin", "col", "crab", "dinosaur", "flower", "flowera", "flowerb",
-    "godl", "greek", "heart", "hedge", "hedgepix", "horsea", "olive",
-    "plate", "scale", "statue", "torch", "tree", "treea", "vase",
-    "vasea", "vaseb", "vasec", "vased", "vasee", "venus", "wave"]);
+      "coin", "col", "crab", "dinosaur", "flower", "flowera",
+      "godl", "greek", "heart", "hedge", "hedgepix", "horsea", "olive",
+      "plate", "scale", "statue", "torch", "tree", "treea", "vase",
+      "vasea", "vaseb", "vasec", "vased", "vasee", "venus", "wave"]);
 
-    
+
     // add tree obj
     add([
       sprite(obstacle),
@@ -425,7 +426,7 @@ scene("game", () => {
   player.onCollide("fence", () => {
     //Soundeffect
     play("crash")
-    
+
     remainingLives--;
 
     if (remainingLives <= 0) {
@@ -467,8 +468,8 @@ scene("lose", (score) => {
     pos(0, 0)
   ]);
 
-    // Audio button
-    audioBtn(vec2(width() - 90, 90), []);
+  // Audio button
+  audioBtn(vec2(width() - 90, 90), []);
 
   // Add Olympic Icon
   add([sprite("gameoverwords"), pos(CW, CH - 170), scale(0.5), anchor("center")]);
