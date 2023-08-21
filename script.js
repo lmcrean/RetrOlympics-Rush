@@ -39,9 +39,12 @@ loadSprite("col", "assets/images/obstacle/col.png");
 loadSprite("crab", "assets/images/obstacle/crab.png");
 loadSprite("dinosaur", "assets/images/obstacle/dinosaur.png");
 loadSprite("flower", "assets/images/obstacle/flower.png");
-loadSprite("flowera", "assets/images/obstacle/flower.png");
+loadSprite("flowera", "assets/images/obstacle/flowera.png");
+loadSprite("flowerb", "assets/images/obstacle/flowerb.png");
 loadSprite("godl", "assets/images/obstacle/godl.png");
+loadSprite("greek", "assets/images/obstacle/greek.png");
 loadSprite("heart", "assets/images/obstacle/heart.png");
+loadSprite("harp", "assets/images/obstacle/harp.png");
 loadSprite("hedge", "assets/images/obstacle/hedge.png");
 loadSprite("hedgepix", "assets/images/obstacle/hedgepix.png");
 loadSprite("horsea", "assets/images/obstacle/horsea.png");
@@ -49,7 +52,7 @@ loadSprite("olive", "assets/images/obstacle/olive.png");
 loadSprite("plate", "assets/images/obstacle/plate.png");
 loadSprite("scale", "assets/images/obstacle/scale.png");
 loadSprite("statue", "assets/images/obstacle/statue.png");
-loadSprite("torch", "assets/images/obstacle/torch.png");
+loadSprite("torcha", "assets/images/obstacle/torcha.png");
 loadSprite("tree", "assets/images/obstacle/tree.png");
 loadSprite("treea", "assets/images/obstacle/treea.png");
 loadSprite("vase", "assets/images/obstacle/vase.png");
@@ -60,6 +63,7 @@ loadSprite("vased", "assets/images/obstacle/vased.png");
 loadSprite("vasee", "assets/images/obstacle/vasee.png");
 loadSprite("venus", "assets/images/obstacle/venus.png");
 loadSprite("wave", "assets/images/obstacle/wave.png");
+
 
 //CONSTATNTS
 const FLOOR_HEIGHT = 50;
@@ -393,9 +397,9 @@ scene("game", () => {
 
     // Define obstacles
     const obstacle = choose(["barrier", "cactus", "cactusone", "circle",
-    "coin", "col", "crab", "dinosaur", "flower", "flowera",
-    "godl", "greek", "heart", "hedge", "hedgepix", "horsea", "olive",
-    "plate", "scale", "statue", "torch", "tree", "treea", "vase",
+    "coin", "col", "crab", "dinosaur", "flower", "flowera", "flowerb",
+    "godl", "greek", "heart", "harp", "hedge", "hedgepix", "horsea", "olive",
+    "plate", "scale", "statue", "torcha", "tree", "treea", "vase",
     "vasea", "vaseb", "vasec", "vased", "vasee", "venus", "wave"]);
 
     
