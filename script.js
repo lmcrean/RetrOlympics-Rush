@@ -393,7 +393,7 @@ scene("game", () => {
 
     // Define obstacles
     const obstacle = choose(["barrier", "cactus", "cactusone", "circle",
-    "coin", "col", "crab", "dinosaur", "flower", "flowera", "flowerb",
+    "coin", "col", "crab", "dinosaur", "flower", "flowera",
     "godl", "greek", "heart", "hedge", "hedgepix", "horsea", "olive",
     "plate", "scale", "statue", "torch", "tree", "treea", "vase",
     "vasea", "vaseb", "vasec", "vased", "vasee", "venus", "wave"]);
