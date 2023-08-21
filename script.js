@@ -21,7 +21,7 @@ loadSprite("gameoverbackground", "assets/images/gameoverbackground.png");
 loadSprite("gameoverwords", "assets/images/gameoverwords.png");
 
 //Sound Sprites
-loadSound("gamemusic", "assets/sounds/running.wav");
+loadSound("gamemusic", "assets/sounds/title-music.mp3");
 loadSound("blip", "assets/sounds/blip.mp3");
 loadSound("crash", "assets/sounds/collide.mp3");
 loadSound("finalhit", "assets/sounds/finalhit.mp3");
@@ -432,7 +432,7 @@ scene("game", () => {
       play("finalhit")
       setTimeout(() => {
         go("lose", score);
-        GAMEMUSIC.volume = 0 // turn startmusic volume down
+        GAMEMUSIC.paused = true // mute startmusic volume
       }, 600);
     } else {
       destroy(lifeHearts.pop()); // remove one heart from health bar
