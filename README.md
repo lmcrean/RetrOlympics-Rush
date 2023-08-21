@@ -6,7 +6,7 @@
 
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![Kaboom.js](https://img.shields.io/badge/Kaboom.js-%23E34F26.svg?style=for-the-badge&logo=kaboom.js&color=%3343330)
 
-<img src="assets/screenshots/lives-feature-c.gif" width =400>
+<img src="assets/screenshots/gameplay-recording-intro.gif" width=400>
 
 
 ## Introduction
