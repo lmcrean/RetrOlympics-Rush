@@ -16,6 +16,7 @@ The player must navigate an Olympic-themed obstacle course in front of a crowd o
 **The target audience is anyone who wants to play a retro-inspired game and is a fan of the Olympics.** The game is fun and challenging, and has an appealing retro aesthetic that nostalgic players will enjoy.
 
 </div>
+
 ## Deployment
 
 [![Deployed site](https://img.shields.io/badge/Deployed_Site-%23E34F26.svg?style=for-the-badge&logo=googleChrome&logoColor=white&color=purple)](https://lmcrean.github.io/RetrOlympics-Rush/)
@@ -93,6 +94,19 @@ The player can use the down arrow key to double jump. This makes the game more c
 
 ### Score
 The scoreboard is tracked in the top-left corner, it updates as the player advances through the assault course and is displayed as a final score in the "game over screen".
+
+### Background music
+
+There is retro themed background music during gameplay.
+
+### Sound Effects
+
+There are sound effects for
+ 
+-  collisions
+-  jumping
+-  clicking on a button
+-  game over
 
 ### Lives remaining
 
