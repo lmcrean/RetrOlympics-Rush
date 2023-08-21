@@ -21,6 +21,7 @@ loadSprite("gameoverbackground", "assets/images/gameoverbackground.png");
 loadSprite("gameoverwords", "assets/images/gameoverwords.png");
 
 //Sound Sprites
+loadSound("titlemusic", "assets/sounds/title-music.mp3");
 loadSound("gamemusic", "assets/sounds/running.wav");
 loadSound("blip", "assets/sounds/blip.mp3");
 loadSound("crash", "assets/sounds/collide.mp3");
@@ -69,7 +70,7 @@ const CW = width() / 2;
 const CH = height() / 2;
 
 // AUDIO
-const GAMEMUSIC = play("gamemusic", {loop:true, paused: true, volume: 0.5})
+const GAMEMUSIC = play("titlemusic", {loop:true, paused: true, volume: 0.5})
 // Variable for controlling audio
 let muted = true
 
