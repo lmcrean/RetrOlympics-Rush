@@ -29,7 +29,7 @@ loadSound("boing", "assets/sounds/mario-jump.mp3");
 loadSound("startsound", "assets/sounds/short-start.mp3");
 loadSound("gameoversound", "assets/sounds/game-over.mp3");
 
-//Obstacles
+// Obstacles
 loadSprite("barrier", "assets/images/obstacle/barrier.png");
 loadSprite("cactus", "assets/images/obstacle/cactus.png");
 loadSprite("cactusone", "assets/images/obstacle/cactusone.png");
@@ -39,7 +39,10 @@ loadSprite("col", "assets/images/obstacle/col.png");
 loadSprite("crab", "assets/images/obstacle/crab.png");
 loadSprite("dinosaur", "assets/images/obstacle/dinosaur.png");
 loadSprite("flower", "assets/images/obstacle/flower.png");
-loadSprite("flowera", "assets/images/obstacle/flower.png");
+loadSprite("flowera", "assets/images/obstacle/flowera.png");
+loadSprite("flowerb", "assets/images/obstacle/flowerb.png");
+loadSprite("godl", "assets/images/obstacle/godl.png");
+loadSprite("greek", "assets/images/obstacle/greek.png");
 loadSprite("heart", "assets/images/obstacle/heart.png");
 loadSprite("hedge", "assets/images/obstacle/hedge.png");
 loadSprite("hedgepix", "assets/images/obstacle/hedgepix.png");
@@ -363,15 +366,17 @@ scene("game", () => {
   onKeyPress("up", jump);
   onKeyPress("down", sit_jump);
 
+  // Obstacles
   function spawnTree() {
 
-    // obstacles
-    const obstacle = choose(["barrier", "cactus", "cactusone", "circle", "coin", "col", "crab", "dinosaur", "venus", "flower", "flowera", "heart", "hedge", "hedgepix", "horsea", "olive", "plate", "scale", "statue", "torch", "tree", "treea", "vase", "vasea", "vaseb", "vasec", "vased", "vasee", "venus", "wave"]);
+    // Define obstacles
+    const obstacle = choose(["barrier", "cactus", "cactusone", "circle", "coin", "col", "crab", "dinosaur", "flower", "flowera", "flowerb", "godl", "greek", "heart", "hedge", "hedgepix", "horsea", "olive", "plate", "scale", "statue", "torch", "tree", "treea", "vase", "vasea", "vaseb", "vasec", "vased", "vasee", "venus", "wave"]);
+
     
-    // add tree obj
+    // Add tree obj
     add([
       sprite(obstacle),
-      scale(0.3),
+      scale(rand(0.2, 0.4)),
       area(),
       outline(4),
       pos(width(), height() - FLOOR_HEIGHT),
@@ -382,7 +387,7 @@ scene("game", () => {
     ]);
 
     // wait a random amount of time to spawn next tree
-    wait(rand(2, 3), spawnTree);
+    wait(rand(1.5, 2.5), spawnTree);
   }
 
   // start spawning trees
