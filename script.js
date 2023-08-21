@@ -370,13 +370,17 @@ scene("game", () => {
   function spawnTree() {
 
     // Define obstacles
-    const obstacle = choose(["barrier", "cactus", "cactusone", "circle", "coin", "col", "crab", "dinosaur", "flower", "flowera", "flowerb", "godl", "greek", "heart", "hedge", "hedgepix", "horsea", "olive", "plate", "scale", "statue", "torch", "tree", "treea", "vase", "vasea", "vaseb", "vasec", "vased", "vasee", "venus", "wave"]);
+    const obstacle = choose(["barrier", "cactus", "cactusone", "circle",
+    "coin", "col", "crab", "dinosaur", "flower", "flowera", "flowerb",
+    "godl", "greek", "heart", "hedge", "hedgepix", "horsea", "olive",
+    "plate", "scale", "statue", "torch", "tree", "treea", "vase",
+    "vasea", "vaseb", "vasec", "vased", "vasee", "venus", "wave"]);
 
     
     // Add tree obj
     add([
       sprite(obstacle),
-      scale(rand(0.2, 0.4)),
+      scale(rand(0.3, 0.5)),
       area(),
       outline(4),
       pos(width(), height() - FLOOR_HEIGHT),
@@ -387,7 +391,7 @@ scene("game", () => {
     ]);
 
     // wait a random amount of time to spawn next tree
-    wait(rand(1.5, 2.5), spawnTree);
+    wait(rand(2, 4), spawnTree);
   }
 
   // start spawning trees
