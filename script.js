@@ -19,6 +19,8 @@ loadSprite("tower", "assets/images/eiffeltower.png");
 loadSprite("downkey", "assets/images/downbutton.png");
 loadSprite("upkey", "assets/images/upbutton.png");
 loadSprite("spacebar", "assets/images/spacekey.png");
+loadSprite("gameoverbackground", "assets/images/gameoverbackground.png");
+loadSprite("gameoverwords", "assets/images/gameoverwords.png");
 
 //Sound Sprites
 loadSound("gamemusic", "assets/sounds/running.wav");
@@ -451,20 +453,24 @@ scene("lose", (score) => {
   //Soundeffects
   const gameOver = play("gameoversound");
 
-  // Background Color
-  add([rect(width(), height()), pos(0, 0), color(60, 50, 168)]);
+  // Background image
+  add([
+    sprite("gameoverbackground", {
+      width: width(),
+      height: height(),
+    }),
+    area(),
+    pos(0, 0)
+  ]);
 
     // Audio button
     audioBtn(vec2(width() - 90, 90), []);
 
   // Add Olympic Icon
-  add([sprite("olympicicon"), pos(CW, CH - 250), scale(2), anchor("center")]);
+  add([sprite("gameoverwords"), pos(CW, CH - 170), scale(0.5), anchor("center")]);
 
-  //Add Game Over Text
-  add([text("Game Over"), pos(CW, CH - 150), scale(2), anchor("center")]);
-
-  //Add Athelete img
-  add([sprite("athlete-1"), pos(CW, CH), scale(1), anchor("center")]);
+  //Add Score Text
+  add([text("score"), pos(CW, CH + 100), scale(1), anchor("center")]);
 
   //Display score
   add([text(score), pos(CW, CH + 150), scale(2), anchor("center")]);
