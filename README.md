@@ -54,15 +54,10 @@ Our team addressed the criteria by organising our project into User Stories, the
 ***
 
 # ABOUT SUBMISSION
-## Intro
-The project is a retro inspired side scroller game. The game is inspired by the 2024's Olympics. The player controls a character that is running through an assault course. The player must jump over obstacles and avoid falling into pits. The player can use the spacebar to jump. The player can use the mouse to click on the screen to jump.
-
-## Goal
-The goal of the project was to provide a fun and challenging game that has an appealing retro aesthetic that nostalgic players will enjoy. The player must navigate an obstacle course. During gameplay, the player can choose to jump or double-jump. Features include a scoreboard and game over screen. 
-
-The target audience is anyone who wants to play a retro inspired side scroller game, and is a fan of the Olympics. The game is fun and challenging, and has an appealing retro aesthetic that nostalgic players will enjoy.
 
 ## Features
+
+The features are intended to enhance gameplay, while reinforcing the retro aesthetic. Accessibility was also consider.
 
 ### Rules
 
@@ -78,6 +73,9 @@ Features include a scoreboard and game over screen.
 
 ### Start Button
 <img src="assets/screenshots/start-feature.gif" width =400>
+
+(from an earlier implementation of the game)
+
 
 ### Jump Feature
 <img src="assets/screenshots/gameplay-recording-intro.gif" width=400>
@@ -111,6 +109,8 @@ There are sound effects for
 ### Lives remaining
 
 <img src="assets/screenshots/lives-feature-c.gif" width =400>
+
+(from an earlier implementation of the game)
 
 ### Rules
 
