@@ -41,6 +41,7 @@ loadSprite("crab", "assets/images/obstacle/crab.png");
 loadSprite("dinosaur", "assets/images/obstacle/dinosaur.png");
 loadSprite("flower", "assets/images/obstacle/flower.png");
 loadSprite("flowera", "assets/images/obstacle/flower.png");
+loadSprite("godl", "assets/images/obstacle/godl.png");
 loadSprite("heart", "assets/images/obstacle/heart.png");
 loadSprite("hedge", "assets/images/obstacle/hedge.png");
 loadSprite("hedgepix", "assets/images/obstacle/hedgepix.png");
@@ -391,13 +392,19 @@ scene("game", () => {
 
   function spawnTree() {
 
-    // obstacles
-    const obstacle = choose(["barrier", "cactus", "cactusone", "circle", "coin", "col", "crab", "dinosaur", "venus", "flower", "flowera", "heart", "hedge", "hedgepix", "horsea", "olive", "plate", "scale", "statue", "torch", "tree", "treea", "vase", "vasea", "vaseb", "vasec", "vased", "vasee", "venus", "wave"]);
+    // Define obstacles
+    const obstacle = choose(["barrier", "cactus", "cactusone", "circle",
+    "coin", "col", "crab", "dinosaur", "flower", "flowera", "flowerb",
+    "godl", "greek", "heart", "hedge", "hedgepix", "horsea", "olive",
+    "plate", "scale", "statue", "torch", "tree", "treea", "vase",
+    "vasea", "vaseb", "vasec", "vased", "vasee", "venus", "wave"]);
+
     
     // add tree obj
     add([
       sprite(obstacle),
-      scale(0.3),
+      scale(rand(0.3, 0.5)),
+
       area(),
       outline(4),
       pos(width(), height() - FLOOR_HEIGHT),
@@ -408,7 +415,7 @@ scene("game", () => {
     ]);
 
     // wait a random amount of time to spawn next tree
-    wait(rand(2, 3), spawnTree);
+    wait(rand(2, 4), spawnTree);
   }
 
   // start spawning trees
