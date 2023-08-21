@@ -26,7 +26,7 @@ loadSound("blip", "assets/sounds/blip.mp3");
 loadSound("crash", "assets/sounds/collide.mp3");
 loadSound("finalhit", "assets/sounds/finalhit.mp3");
 loadSound("boing", "assets/sounds/mario-jump.mp3");
-loadSound("bling", "assets/sounds/start.wav");
+loadSound("startsound", "assets/sounds/short-start.mp3");
 loadSound("gameoversound", "assets/sounds/game-over.mp3");
 
 //Obstacles
@@ -69,8 +69,7 @@ const CW = width() / 2;
 const CH = height() / 2;
 
 // AUDIO
-const GAMEMUSIC = play("gamemusic", {loop:true, paused: true})
-
+const GAMEMUSIC = play("gamemusic", {loop:true, paused: true, volume: 0.5})
 // Variable for controlling audio
 let muted = true
 
@@ -102,15 +101,14 @@ function audioBtn(p, musicArray){
       muted = true,
       volume(0.0)
       btnicon.use(sprite("speakeroff"))}
-    for(music in musicArray){
-        console.log(muted)
-        console.log(music)
+    for(music of musicArray){
         music.paused = muted
       }
   });
   return btn
 }
 
+// ONCLICK BUTTON
 function addButton(txt, p, f) {
   // add a parent background object
   const btn = add([
@@ -151,9 +149,9 @@ function addButton(txt, p, f) {
 
 //START MENU
 scene("startmenu", () => {
-  muted==true ? volume(0) : volume(0.5);
   GAMEMUSIC.paused= muted
-
+  muted==true ? volume(0) : volume(0.5);
+  
   add([
     sprite("mainScreenBackground", {
       width: width(),
@@ -174,7 +172,6 @@ scene("startmenu", () => {
   addButton("Start ⏎", vec2(CW, CH + 200), () => {
         go("game");
         //Mute music before starting the game
-        GAMEMUSIC.volume = 0
     });
   
   addButton("Credits →", vec2(CW + 400, CH + 200), () => {
@@ -258,7 +255,7 @@ go("startmenu");
 //GAMEPLAY//
 scene("game", () => {
   //Soundeffect
-  const startMusic = play("bling")
+  const startMusic = play("startsound")
 
   
   // Draw the background image onto the canvas
@@ -272,7 +269,7 @@ scene("game", () => {
   ]);
 
   // Audio button
-  audioBtn(vec2(width() - 90, 90))
+  audioBtn(vec2(width() - 90, 90), [])
 
   // initialize life counter
   let remainingLives = 5;
@@ -404,7 +401,7 @@ scene("game", () => {
       play("finalhit")
       setTimeout(() => {
         go("lose", score);
-        startMusic.volume = 0 // turn startmusic volume down
+        GAMEMUSIC.paused = true // turn startmusic volume down
       }, 600);
     } else {
       destroy(lifeHearts.pop()); // remove one heart from health bar
@@ -432,7 +429,7 @@ scene("lose", (score) => {
   add([rect(width(), height()), pos(0, 0), color(60, 50, 168)]);
 
     // Audio button
-    audioBtn(vec2(width() - 90, 90));
+    audioBtn(vec2(width() - 90, 90), []);
 
   // Add Olympic Icon
   add([sprite("olympicicon"), pos(CW, CH - 250), scale(2), anchor("center")]);
